@@ -1,0 +1,21 @@
+#!/bin/bash
+# ============================================================
+# pre-commit hook — runs lint + type-check before every commit
+# ============================================================
+set -e
+
+echo "🔍 Running pre-commit checks..."
+
+# Type check
+echo "  → TypeScript..."
+npm run type-check
+
+# Lint
+echo "  → ESLint..."
+npm run lint
+
+# Format check
+echo "  → Prettier..."
+npm run format
+
+echo "✅ All checks passed."
