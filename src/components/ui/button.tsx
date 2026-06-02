@@ -19,6 +19,11 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-[var(--color-accent)] hover:text-[var(--color-accent-foreground)]",
         link: "text-[var(--color-primary)] underline-offset-4 hover:underline",
+        // CGCA brand variants
+        brand:
+          "rounded-[10px] border border-[var(--color-rojo-red)] bg-[var(--color-rojo-red)] text-white font-bold hover:bg-white hover:text-[var(--color-rojo-red)]",
+        "brand-outline":
+          "rounded-[10px] border border-[var(--color-rojo-red)] bg-transparent text-[var(--color-rojo-red)] font-bold hover:bg-[var(--color-rojo-red)] hover:text-white",
       },
       size: {
         default: "h-9 px-4 py-2",

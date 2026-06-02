@@ -1,14 +1,6 @@
 /**
- * Auto-generated Supabase types.
- *
- * Regenerate after schema changes:
- *   npm run db:generate
- *
- * Requires the Supabase CLI and a running local instance:
- *   npm run db:start
- *
- * Or against your hosted project:
- *   supabase gen types typescript --project-id <your-project-ref> > src/types/supabase.ts
+ * Supabase types for the CGCA schema.
+ * Regenerate after schema changes: npm run db:generate (requires running local Supabase)
  */
 
 export type Json =
@@ -19,45 +11,133 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[];
 
-// Replace this with the generated output from `supabase gen types typescript`
 export type Database = {
   public: {
     Tables: {
-      // Example table — remove and regenerate from your schema
-      profiles: {
+      profile: {
         Row: {
           id: string;
-          created_at: string;
-          updated_at: string;
-          username: string | null;
-          full_name: string | null;
-          avatar_url: string | null;
+          email: string;
+          name: string;
+          phone_number: string;
         };
         Insert: {
           id: string;
-          created_at?: string;
-          updated_at?: string;
-          username?: string | null;
-          full_name?: string | null;
-          avatar_url?: string | null;
+          email: string;
+          name?: string;
+          phone_number?: string;
         };
         Update: {
           id?: string;
-          created_at?: string;
-          updated_at?: string;
-          username?: string | null;
-          full_name?: string | null;
-          avatar_url?: string | null;
+          email?: string;
+          name?: string;
+          phone_number?: string;
         };
         Relationships: [
           {
-            foreignKeyName: "profiles_id_fkey";
+            foreignKeyName: "profile_id_fkey";
             columns: ["id"];
             isOneToOne: true;
             referencedRelation: "users";
             referencedColumns: ["id"];
           },
         ];
+      };
+      events: {
+        Row: {
+          id: number;
+          title: string;
+          description: string;
+          date: string;
+          time: string;
+          image_url: string;
+        };
+        Insert: {
+          id?: number;
+          title: string;
+          description?: string;
+          date: string;
+          time?: string;
+          image_url?: string;
+        };
+        Update: {
+          id?: number;
+          title?: string;
+          description?: string;
+          date?: string;
+          time?: string;
+          image_url?: string;
+        };
+        Relationships: [];
+      };
+      sponsors: {
+        Row: {
+          id: number;
+          sponsor: string;
+          description: string;
+          location: string | null;
+          phone: string;
+          website: string | null;
+          image_url: string | null;
+          file_name: string | null;
+          custom_file_name: string | null;
+          logo_url: string | null;
+          logo_file_name: string | null;
+          custom_logo_file_name: string | null;
+        };
+        Insert: {
+          id?: number;
+          sponsor: string;
+          description?: string;
+          location?: string | null;
+          phone?: string;
+          website?: string | null;
+          image_url?: string | null;
+          file_name?: string | null;
+          custom_file_name?: string | null;
+          logo_url?: string | null;
+          logo_file_name?: string | null;
+          custom_logo_file_name?: string | null;
+        };
+        Update: {
+          id?: number;
+          sponsor?: string;
+          description?: string;
+          location?: string | null;
+          phone?: string;
+          website?: string | null;
+          image_url?: string | null;
+          file_name?: string | null;
+          custom_file_name?: string | null;
+          logo_url?: string | null;
+          logo_file_name?: string | null;
+          custom_logo_file_name?: string | null;
+        };
+        Relationships: [];
+      };
+      gallery: {
+        Row: {
+          id: number;
+          image_url: string;
+          file_name: string;
+          custom_file_name: string;
+          event: string;
+        };
+        Insert: {
+          id?: number;
+          image_url: string;
+          file_name?: string;
+          custom_file_name?: string;
+          event?: string;
+        };
+        Update: {
+          id?: number;
+          image_url?: string;
+          file_name?: string;
+          custom_file_name?: string;
+          event?: string;
+        };
+        Relationships: [];
       };
     };
     Views: Record<string, never>;

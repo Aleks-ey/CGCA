@@ -1,4 +1,4 @@
-# Project Context for Claude Code
+# CGCA — Project Context for Claude Code
 
 This file is read automatically by Claude Code when you run `claude` in this project.
 Update it as your project evolves to give Claude the context it needs.

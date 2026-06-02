@@ -1,5 +1,5 @@
 {
-  "name": "Next.js Dev Container",
+  "name": "CGCA — Next.js Dev Container",
   "build": {
     "context": "..",
     "dockerfile": "Dockerfile"
@@ -45,7 +45,7 @@
   "updateRemoteUserUID": true,
   "mounts": [
     "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
-    "source=nextjs-starter-node-modules,target=/app/node_modules,type=volume"
+    "source=cgca-node-modules,target=/app/node_modules,type=volume"
   ],
   "postCreateCommand": "npm install && bash .devcontainer/post-create.sh"
 }
