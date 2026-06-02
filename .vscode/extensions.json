@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-typescript-next",
+    "supabase.vscode-supabase-extension",
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "vitest.explorer",
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers"
+  ]
+}

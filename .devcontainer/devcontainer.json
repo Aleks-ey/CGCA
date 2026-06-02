@@ -1,0 +1,51 @@
+{
+  "name": "Next.js Dev Container",
+  "build": {
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-typescript-next",
+        "supabase.vscode-supabase-extension",
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+        "usernamehw.errorlens",
+        "streetsidesoftware.code-spell-checker",
+        "vitest.explorer",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "js/ts.tsdk.path": "node_modules/typescript/lib",
+        "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+        "tailwindCSS.experimental.configFile": "./tailwind.config.ts",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "forwardPorts": [3000, 54321, 54322, 54323, 54324],
+  "portsAttributes": {
+    "3000": { "label": "Next.js", "onAutoForward": "notify" },
+    "54321": { "label": "Supabase API", "onAutoForward": "silent" },
+    "54322": { "label": "Supabase DB", "onAutoForward": "silent" },
+    "54323": { "label": "Supabase Studio", "onAutoForward": "notify" },
+    "54324": { "label": "Supabase Inbucket", "onAutoForward": "silent" }
+  },
+  "remoteUser": "node",
+  "updateRemoteUserUID": true,
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
+    "source=nextjs-starter-node-modules,target=/app/node_modules,type=volume"
+  ],
+  "postCreateCommand": "npm install && bash .devcontainer/post-create.sh"
+}

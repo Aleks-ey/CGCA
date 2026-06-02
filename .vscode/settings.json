@@ -1,0 +1,39 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "tailwindCSS.experimental.configFile": "./tailwind.config.ts",
+  "tailwindCSS.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/.next": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/coverage": true
+  },
+  "vitest.enable": true,
+  "vitest.commandLine": "npx vitest",
+  "cSpell.words": [
+    "aarch",
+    "clsx",
+    "eacces",
+    "hookspath",
+    "jsdom",
+    "NEXTAUTH",
+    "nextjs",
+    "Supabase",
+    "Turbopack",
+    "vitest"
+  ]
+}
