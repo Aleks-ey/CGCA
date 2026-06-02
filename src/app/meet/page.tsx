@@ -71,9 +71,9 @@ function BoardMemberCard({ member }: { member: (typeof boardMembers)[0] }) {
 
   return (
     <>
-      <div className="relative w-3/5 md:w-1/2 cursor-pointer overflow-hidden group">
+      <div className="group relative w-3/5 cursor-pointer overflow-hidden md:w-1/2">
         <button
-          className="absolute top-0 w-full p-4 bg-slate-800 text-white transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"
+          className="absolute top-0 z-10 w-full bg-slate-800 p-4 text-white opacity-0 transition-all duration-300 group-hover:opacity-100"
           onClick={() => setOpen(true)}
           aria-label={`View bio for ${member.name}`}
         >
@@ -85,11 +85,11 @@ function BoardMemberCard({ member }: { member: (typeof boardMembers)[0] }) {
             alt={`${member.name}, ${member.role}`}
             width={400}
             height={256}
-            className="object-cover w-full h-64"
+            className="h-64 w-full object-cover"
             style={{ objectPosition: member.objectPosition }}
           />
         </div>
-        <div className="text-center py-2">
+        <div className="py-2 text-center">
           <h2 className="text-lg font-semibold">{member.name}</h2>
           <p className="text-gray-600">{member.role}</p>
         </div>
@@ -97,19 +97,19 @@ function BoardMemberCard({ member }: { member: (typeof boardMembers)[0] }) {
 
       {open && (
         <div
-          className="fixed inset-0 bg-black/70 flex justify-center items-center z-50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
           onClick={() => setOpen(false)}
           role="dialog"
           aria-modal="true"
           aria-label={`Bio for ${member.name}`}
         >
           <div
-            className="w-11/12 h-4/5 md:w-2/3 md:h-2/3 p-8 rounded-lg bg-white overflow-hidden"
+            className="h-4/5 w-11/12 overflow-hidden rounded-lg bg-white p-8 md:h-2/3 md:w-2/3"
             onClick={(e) => e.stopPropagation()}
           >
             <h3 className="text-2xl font-medium">{member.name}</h3>
             <p className="text-xl font-normal text-gray-500">{member.role}</p>
-            <div className="pt-8 h-[calc(100%-5rem)] overflow-y-auto">
+            <div className="h-[calc(100%-5rem)] overflow-y-auto pt-8">
               {member.bio.split("\n\n").map((para, i) => (
                 <p key={i} className="mb-4 leading-relaxed">
                   {para}
@@ -126,15 +126,15 @@ function BoardMemberCard({ member }: { member: (typeof boardMembers)[0] }) {
 export default function MeetPage() {
   return (
     <>
-      <div className="flex pt-20 pb-10 md:pt-32 md:pb-16 justify-center text-center">
-        <h2 className="px-8 text-[var(--color-prussian-blue)] text-3xl md:text-5xl font-medium">
+      <div className="flex justify-center pt-20 pb-10 text-center md:pt-32 md:pb-16">
+        <h2 className="px-8 text-3xl font-medium text-[var(--color-prussian-blue)] md:text-5xl">
           Meet the Board
           <br />
           Dedicated to Carrying Out Our Mission
         </h2>
       </div>
 
-      <div className="flex flex-col md:grid md:grid-cols-3 gap-y-12 py-10 justify-center justify-items-center items-center">
+      <div className="flex flex-col items-center justify-center justify-items-center gap-y-12 py-10 md:grid md:grid-cols-3">
         {boardMembers.map((member) => (
           <BoardMemberCard key={member.name} member={member} />
         ))}

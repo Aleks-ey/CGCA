@@ -2,7 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const SYNONYMS = ["UNION", "WHOLE", "PEACE", "LOVE", "OJAKHI", "IMEDI", "ERTAD"];
+const SYNONYMS = [
+  "UNION",
+  "WHOLE",
+  "PEACE",
+  "LOVE",
+  "OJAKHI",
+  "IMEDI",
+  "ERTAD",
+];
 
 export function HomeWordCycle() {
   const [word, setWord] = useState("ERTOBA");
@@ -37,7 +45,7 @@ export function HomeWordCycle() {
 
   return (
     <p
-      className="flex h-1/3 justify-center items-center p-4 text-[10vw] md:text-[5vw]"
+      className="flex h-1/3 items-center justify-center p-4 text-[10vw] md:text-[5vw]"
       style={{
         color: "black",
         mixBlendMode: "screen",

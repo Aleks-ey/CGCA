@@ -56,10 +56,10 @@ export default function HomePage() {
   return (
     <>
       {/* ---- Hero ---- */}
-      <div className="flex flex-col md:flex-row justify-center mt-14 mx-auto md:mx-10 w-[90vw]">
-        <div className="flex flex-col mr-4 md:py-16 w-full md:w-[45%]">
+      <div className="mx-auto mt-14 flex w-[90vw] flex-col justify-center md:mx-10 md:flex-row">
+        <div className="mr-4 flex w-full flex-col md:w-[45%] md:py-16">
           <h1
-            className="leading-[1.1] text-[8vw] md:text-[4vw]"
+            className="text-[8vw] leading-[1.1] md:text-[4vw]"
             style={{ fontFamily: "var(--font-merriweather)" }}
           >
             Welcome to the Heart of Georgian Culture in Colorado!
@@ -82,7 +82,7 @@ export default function HomePage() {
 
         {/* Word-cycle overlay */}
         <div
-          className="flex mt-12 md:mt-0 justify-center items-center md:w-[55%] min-h-48 md:min-h-0"
+          className="mt-12 flex min-h-48 items-center justify-center md:mt-0 md:min-h-0 md:w-[55%]"
           style={{
             backgroundImage: "url('/images/Tbilisi1.jpg')",
             backgroundSize: "cover",
@@ -94,21 +94,65 @@ export default function HomePage() {
       </div>
 
       {/* ---- CGCA full name ---- */}
-      <div className="flex flex-col mt-28 justify-center text-center">
+      <div className="mt-28 flex flex-col justify-center text-center">
         <h2
           className="text-[35px] leading-none"
           style={{ fontFamily: "var(--font-merriweather)" }}
         >
-          <span style={{ WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", backgroundColor: "black", backgroundSize: "200%" }}>C</span>olorado{" "}
-          <span style={{ WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", backgroundColor: "black", backgroundSize: "200%" }}>G</span>eorgian{" "}
-          <span style={{ WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", backgroundColor: "black", backgroundSize: "200%" }}>C</span>ommunity{" "}
-          <span style={{ WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", backgroundColor: "black", backgroundSize: "200%" }}>A</span>ssociation
+          <span
+            style={{
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundColor: "black",
+              backgroundSize: "200%",
+            }}
+          >
+            C
+          </span>
+          olorado{" "}
+          <span
+            style={{
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundColor: "black",
+              backgroundSize: "200%",
+            }}
+          >
+            G
+          </span>
+          eorgian{" "}
+          <span
+            style={{
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundColor: "black",
+              backgroundSize: "200%",
+            }}
+          >
+            C
+          </span>
+          ommunity{" "}
+          <span
+            style={{
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundColor: "black",
+              backgroundSize: "200%",
+            }}
+          >
+            A
+          </span>
+          ssociation
         </h2>
       </div>
 
       {/* ---- Mission cards ---- */}
       <div className="flex justify-center">
-        <div className="flex flex-col md:flex-row px-10 mt-10 justify-center md:gap-16 text-center">
+        <div className="mt-10 flex flex-col justify-center px-10 text-center md:flex-row md:gap-16">
           {[
             {
               src: "/images/CGCA-LOGO(zoomedout).png",
@@ -129,7 +173,10 @@ export default function HomePage() {
               body: "Offering educational initiatives in Colorado dedicated to preserving the rich essence of Georgian culture. Join us in celebrating and learning about our cherished traditions and heritage.",
             },
           ].map((card) => (
-            <div key={card.title} className="flex flex-col md:w-1/4 text-center mb-8 md:mb-0">
+            <div
+              key={card.title}
+              className="mb-8 flex flex-col text-center md:mb-0 md:w-1/4"
+            >
               <Image
                 src={card.src}
                 alt={card.alt}
@@ -138,40 +185,44 @@ export default function HomePage() {
                 className="mx-auto"
               />
               <h3
-                className="text-xl leading-none mt-3"
+                className="mt-3 text-xl leading-none"
                 style={{ fontFamily: "var(--font-merriweather)" }}
               >
                 {card.title}
               </h3>
-              <p className="text-[18px] leading-7 mt-2">{card.body}</p>
+              <p className="mt-2 text-[18px] leading-7">{card.body}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* ---- About sections (sticky scroll cards) ---- */}
-      <div className="w-full relative mt-20">
-        <div className="flex mx-12 justify-center text-center">
-          <h2 className="text-gray-400 text-2xl">Explore the Wonders of Georgian Culture</h2>
+      <div className="relative mt-20 w-full">
+        <div className="mx-12 flex justify-center text-center">
+          <h2 className="text-2xl text-gray-400">
+            Explore the Wonders of Georgian Culture
+          </h2>
         </div>
 
         {aboutSections.map((section) => (
           <div
             key={section.title}
-            className="sticky flex flex-col md:flex-row mt-6 w-[90%] mx-auto bg-white rounded-[10px] shadow-[0_0_5px_gray] overflow-hidden"
+            className="sticky mx-auto mt-6 flex w-[90%] flex-col overflow-hidden rounded-[10px] bg-white shadow-[0_0_5px_gray] md:flex-row"
             style={{ top: `${section.topVw}vw`, zIndex: section.zIndex }}
           >
-            <div className="mt-[10vh] mx-[30px] md:ml-[50px] md:mr-[20px] md:w-1/2">
+            <div className="mx-[30px] mt-[10vh] md:mr-[20px] md:ml-[50px] md:w-1/2">
               <h3 className="text-[xx-large]">{section.title}</h3>
-              <p className="text-[18px] leading-[1.3] mt-2 md:text-base">{section.body}</p>
+              <p className="mt-2 text-[18px] leading-[1.3] md:text-base">
+                {section.body}
+              </p>
             </div>
-            <div className="hidden md:block mt-[10vh] mx-[30px] md:w-1/2">
+            <div className="mx-[30px] mt-[10vh] hidden md:block md:w-1/2">
               <Image
                 src={section.img}
                 alt={section.alt}
                 width={600}
                 height={400}
-                className="w-full object-cover rounded-[5px] mb-[5vw]"
+                className="mb-[5vw] w-full rounded-[5px] object-cover"
               />
             </div>
           </div>
@@ -179,18 +230,19 @@ export default function HomePage() {
       </div>
 
       {/* ---- Support CTA ---- */}
-      <div className="flex flex-col mx-auto mt-40 mb-28 py-12 px-2 md:px-6 md:py-8 justify-center text-center text-white rounded-[10px] shadow-[5px_5px_10px_black] bg-[var(--color-prussian-blue)] w-[90%] md:w-[60%]">
+      <div className="mx-auto mt-40 mb-28 flex w-[90%] flex-col justify-center rounded-[10px] bg-[var(--color-prussian-blue)] px-2 py-12 text-center text-white shadow-[5px_5px_10px_black] md:w-[60%] md:px-6 md:py-8">
         <h2 className="text-3xl md:text-3xl">Become a Supporter Today!</h2>
         <p className="mt-4 text-lg">
-          Making a meaningful impact on our local community only becomes a reality through the
-          generous support of individuals like you, who believe in our mission and are willing to
-          donate to help us create a brighter future for everyone.
+          Making a meaningful impact on our local community only becomes a
+          reality through the generous support of individuals like you, who
+          believe in our mission and are willing to donate to help us create a
+          brighter future for everyone.
         </p>
         <a
           href="https://square.link/u/20SYlc1k"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 mx-auto inline-block rounded-[10px] border border-[var(--color-rojo-red)] bg-[var(--color-rojo-red)] px-10 py-[1.188rem] font-normal text-white text-lg transition-colors hover:bg-white hover:text-[var(--color-rojo-red)]"
+          className="mx-auto mt-8 inline-block rounded-[10px] border border-[var(--color-rojo-red)] bg-[var(--color-rojo-red)] px-10 py-[1.188rem] text-lg font-normal text-white transition-colors hover:bg-white hover:text-[var(--color-rojo-red)]"
         >
           Donate
         </a>

@@ -16,7 +16,9 @@ describe("LoginForm", () => {
 
   it("renders a submit button", () => {
     render(<LoginForm />);
-    expect(screen.getByRole("button", { name: /sign in/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /sign in/i })
+    ).toBeInTheDocument();
   });
 
   it("email field has type email", () => {
@@ -26,7 +28,10 @@ describe("LoginForm", () => {
 
   it("password field has type password", () => {
     render(<LoginForm />);
-    expect(screen.getByLabelText(/password/i)).toHaveAttribute("type", "password");
+    expect(screen.getByLabelText(/password/i)).toHaveAttribute(
+      "type",
+      "password"
+    );
   });
 
   it("shows error message when signIn returns an error", async () => {
@@ -40,6 +45,8 @@ describe("LoginForm", () => {
     await user.type(screen.getByLabelText(/password/i), "wrongpass");
     await user.click(screen.getByRole("button", { name: /sign in/i }));
 
-    expect(await screen.findByRole("alert")).toHaveTextContent(/invalid credentials/i);
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      /invalid credentials/i
+    );
   });
 });

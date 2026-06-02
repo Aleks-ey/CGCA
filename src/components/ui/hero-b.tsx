@@ -21,7 +21,7 @@ export function HeroB({
   return (
     <section
       className={cn(
-        "relative flex min-h-64 md:min-h-96 items-center justify-center overflow-hidden",
+        "relative flex min-h-64 items-center justify-center overflow-hidden md:min-h-96",
         className
       )}
     >
@@ -36,11 +36,11 @@ export function HeroB({
       {/* dark overlay */}
       <div className="absolute inset-0 bg-[var(--color-prussian-blue)]/60" />
       <div className="relative z-10 px-6 py-12 text-center text-white">
-        <h1 className="text-4xl md:text-5xl font-bold [font-family:var(--font-merriweather)]">
+        <h1 className="[font-family:var(--font-merriweather)] text-4xl font-bold md:text-5xl">
           {title}
         </h1>
         {description && (
-          <p className="mt-4 text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80 md:text-xl">
             {description}
           </p>
         )}

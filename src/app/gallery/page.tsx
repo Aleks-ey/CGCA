@@ -6,9 +6,9 @@ export const metadata: Metadata = { title: "Gallery" };
 export default function GalleryPage() {
   return (
     <>
-      <div className="flex flex-col justify-center text-center py-16 px-6 bg-[var(--color-prussian-blue)] text-white">
+      <div className="flex flex-col justify-center bg-[var(--color-prussian-blue)] px-6 py-16 text-center text-white">
         <h1
-          className="text-4xl md:text-5xl font-bold"
+          className="text-4xl font-bold md:text-5xl"
           style={{ fontFamily: "var(--font-merriweather)" }}
         >
           Gallery

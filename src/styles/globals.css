@@ -58,9 +58,9 @@
 
 @theme {
   /* --- Brand colors --- */
-  --color-peach: #F4DCD3;
-  --color-rojo-red: #DC2626;
-  --color-prussian-blue: #1E293B;
+  --color-peach: #f4dcd3;
+  --color-rojo-red: #dc2626;
+  --color-prussian-blue: #1e293b;
 
   /* --- System colors --- */
   --color-background: #ffffff;
@@ -130,9 +130,9 @@
     --color-ring: #cbd5e1;
 
     /* Brand colors have no dark-mode inversion — they are used as-is */
-    --color-peach: #F4DCD3;
-    --color-rojo-red: #DC2626;
-    --color-prussian-blue: #1E293B;
+    --color-peach: #f4dcd3;
+    --color-rojo-red: #dc2626;
+    --color-prussian-blue: #1e293b;
   }
 }
 
@@ -170,17 +170,29 @@ body {
 
 /* Sponsor logo carousel */
 @keyframes slide-ltr {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(0%); }
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }
 
 @keyframes slide-rtl {
-  from { transform: translateX(0%); }
-  to   { transform: translateX(-100%); }
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 /* Home hero CGCA letter highlight pan */
 @keyframes background-pan {
-  from { background-position: 0% center; }
-  to   { background-position: -200% center; }
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
 }

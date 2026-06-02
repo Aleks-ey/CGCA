@@ -21,9 +21,13 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-lg">
-      <div className="flex items-center h-auto p-1 md:px-2 md:py-1">
+      <div className="flex h-auto items-center p-1 md:px-2 md:py-1">
         {/* Logo */}
-        <Link href="/" className="block shrink-0" onClick={() => setIsMenuOpen(false)}>
+        <Link
+          href="/"
+          className="block shrink-0"
+          onClick={() => setIsMenuOpen(false)}
+        >
           <Image
             src="/images/CGCA-LOGO.png"
             alt="Colorado Georgian Community Association"
@@ -37,7 +41,7 @@ export function Header() {
         {/* Title (hidden when mobile menu open) */}
         {!isMenuOpen && (
           <Link href="/" className="flex flex-col p-1 lg:p-2">
-            <span className="font-semibold text-lg text-[var(--color-prussian-blue)]">
+            <span className="text-lg font-semibold text-[var(--color-prussian-blue)]">
               CGCA
             </span>
           </Link>
@@ -45,7 +49,7 @@ export function Header() {
 
         {/* Expanded title when menu open (mobile) */}
         {isMenuOpen && (
-          <Link href="/" className="z-20 pl-1 text-white text-sm leading-tight">
+          <Link href="/" className="z-20 pl-1 text-sm leading-tight text-white">
             Colorado Georgian
             <br />
             Community Association
@@ -55,7 +59,10 @@ export function Header() {
         <span className="flex-1" />
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-6" aria-label="Main navigation">
+        <nav
+          className="hidden items-center gap-6 lg:flex"
+          aria-label="Main navigation"
+        >
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
@@ -82,7 +89,7 @@ export function Header() {
 
         {/* Hamburger (mobile) */}
         <button
-          className="lg:hidden ml-2 p-2 text-[var(--color-prussian-blue)] z-20"
+          className="z-20 ml-2 p-2 text-[var(--color-prussian-blue)] lg:hidden"
           onClick={() => setIsMenuOpen((v) => !v)}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
@@ -96,7 +103,11 @@ export function Header() {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           ) : (
             <svg
@@ -107,7 +118,11 @@ export function Header() {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           )}
         </button>
@@ -116,17 +131,21 @@ export function Header() {
       {/* Mobile expanded menu */}
       {isMenuOpen && (
         <nav
-          className="fixed inset-0 z-10 flex flex-col bg-[var(--color-prussian-blue)] pt-20 pl-6 gap-4"
+          className="fixed inset-0 z-10 flex flex-col gap-4 bg-[var(--color-prussian-blue)] pt-20 pl-6"
           aria-label="Mobile navigation"
         >
-          <Link href="/" className="text-white text-lg" onClick={() => setIsMenuOpen(false)}>
+          <Link
+            href="/"
+            className="text-lg text-white"
+            onClick={() => setIsMenuOpen(false)}
+          >
             Home
           </Link>
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="text-white text-lg"
+              className="text-lg text-white"
               onClick={() => setIsMenuOpen(false)}
             >
               {label}
@@ -136,7 +155,7 @@ export function Header() {
             href="https://square.link/u/20SYlc1k"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white text-lg"
+            className="text-lg text-white"
             onClick={() => setIsMenuOpen(false)}
           >
             Donate

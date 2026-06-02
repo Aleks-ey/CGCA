@@ -40,7 +40,7 @@ export function useGallery(eventFilter?: string) {
 
   useEffect(() => {
     fetchEvents();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export function useGallery(eventFilter?: string) {
       setImages(rows);
       setLoading(false);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventFilter]);
 
   async function loadMore() {

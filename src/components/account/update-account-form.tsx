@@ -54,7 +54,9 @@ export function UpdateAccountForm({
     const newEmail = fd.get("email") as string;
     startTransition(async () => {
       reset();
-      const { error: err } = await supabase.auth.updateUser({ email: newEmail });
+      const { error: err } = await supabase.auth.updateUser({
+        email: newEmail,
+      });
       if (err) setError(err.message);
       else setSuccess("Check your new email for a confirmation link.");
     });
@@ -71,7 +73,9 @@ export function UpdateAccountForm({
     }
     startTransition(async () => {
       reset();
-      const { error: err } = await supabase.auth.updateUser({ password: newPassword });
+      const { error: err } = await supabase.auth.updateUser({
+        password: newPassword,
+      });
       if (err) setError(err.message);
       else setSuccess("Password updated.");
     });
@@ -87,7 +91,7 @@ export function UpdateAccountForm({
     "rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-rojo-red)]";
 
   return (
-    <div className="border rounded-xl p-6 flex flex-col gap-4">
+    <div className="flex flex-col gap-4 rounded-xl border p-6">
       <div className="flex gap-2">
         {tabs.map((t) => (
           <button
@@ -96,7 +100,7 @@ export function UpdateAccountForm({
               setTab(t.key);
               reset();
             }}
-            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+            className={`rounded-md px-3 py-1 text-sm font-medium transition-colors ${
               tab === t.key
                 ? "bg-[var(--color-prussian-blue)] text-white"
                 : "border border-gray-300 text-gray-600 hover:border-[var(--color-prussian-blue)]"
@@ -110,12 +114,32 @@ export function UpdateAccountForm({
       {tab === "info" && (
         <form onSubmit={updateInfo} className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <label htmlFor="name" className="text-sm font-medium text-gray-700">Name</label>
-            <input id="name" name="name" type="text" defaultValue={currentName} required className={inputClass} />
+            <label htmlFor="name" className="text-sm font-medium text-gray-700">
+              Name
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              defaultValue={currentName}
+              required
+              className={inputClass}
+            />
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone</label>
-            <input id="phone" name="phone" type="tel" defaultValue={currentPhone} className={inputClass} />
+            <label
+              htmlFor="phone"
+              className="text-sm font-medium text-gray-700"
+            >
+              Phone
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              defaultValue={currentPhone}
+              className={inputClass}
+            />
           </div>
           <SubmitBtn pending={isPending} label="Save Changes" />
         </form>
@@ -124,8 +148,20 @@ export function UpdateAccountForm({
       {tab === "email" && (
         <form onSubmit={updateEmail} className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <label htmlFor="email" className="text-sm font-medium text-gray-700">New Email</label>
-            <input id="email" name="email" type="email" defaultValue={currentEmail} required className={inputClass} />
+            <label
+              htmlFor="email"
+              className="text-sm font-medium text-gray-700"
+            >
+              New Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              defaultValue={currentEmail}
+              required
+              className={inputClass}
+            />
           </div>
           <SubmitBtn pending={isPending} label="Update Email" />
         </form>
@@ -134,19 +170,49 @@ export function UpdateAccountForm({
       {tab === "password" && (
         <form onSubmit={updatePassword} className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <label htmlFor="password" className="text-sm font-medium text-gray-700">New Password</label>
-            <input id="password" name="password" type="password" required className={inputClass} />
+            <label
+              htmlFor="password"
+              className="text-sm font-medium text-gray-700"
+            >
+              New Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              className={inputClass}
+            />
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="confirm" className="text-sm font-medium text-gray-700">Confirm Password</label>
-            <input id="confirm" name="confirm" type="password" required className={inputClass} />
+            <label
+              htmlFor="confirm"
+              className="text-sm font-medium text-gray-700"
+            >
+              Confirm Password
+            </label>
+            <input
+              id="confirm"
+              name="confirm"
+              type="password"
+              required
+              className={inputClass}
+            />
           </div>
           <SubmitBtn pending={isPending} label="Update Password" />
         </form>
       )}
 
-      {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
-      {success && <p role="status" className="text-sm text-green-600">{success}</p>}
+      {error && (
+        <p role="alert" className="text-sm text-red-600">
+          {error}
+        </p>
+      )}
+      {success && (
+        <p role="status" className="text-sm text-green-600">
+          {success}
+        </p>
+      )}
     </div>
   );
 }

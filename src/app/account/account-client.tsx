@@ -17,11 +17,20 @@ export function AccountClient({ userId, profile }: AccountClientProps) {
   return (
     <div className="flex flex-col gap-10">
       <section>
-        <h2 className="text-xl font-semibold text-[var(--color-prussian-blue)] mb-4">Account Info</h2>
-        <div className="border rounded-lg p-4 mb-4 text-sm text-gray-600 flex flex-col gap-1">
-          <p><span className="font-medium">Name:</span> {profile.name || "—"}</p>
-          <p><span className="font-medium">Email:</span> {profile.email}</p>
-          <p><span className="font-medium">Phone:</span> {profile.phone_number || "—"}</p>
+        <h2 className="mb-4 text-xl font-semibold text-[var(--color-prussian-blue)]">
+          Account Info
+        </h2>
+        <div className="mb-4 flex flex-col gap-1 rounded-lg border p-4 text-sm text-gray-600">
+          <p>
+            <span className="font-medium">Name:</span> {profile.name || "—"}
+          </p>
+          <p>
+            <span className="font-medium">Email:</span> {profile.email}
+          </p>
+          <p>
+            <span className="font-medium">Phone:</span>{" "}
+            {profile.phone_number || "—"}
+          </p>
         </div>
         <UpdateAccountForm
           userId={userId}

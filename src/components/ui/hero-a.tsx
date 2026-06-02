@@ -25,12 +25,14 @@ export function HeroA({
   className,
 }: HeroAProps) {
   const textBlock = (
-    <div className="flex flex-col justify-center p-8 md:p-12 md:w-1/2">
-      <h1 className="text-3xl md:text-4xl font-bold text-[var(--color-prussian-blue)] leading-tight [font-family:var(--font-merriweather)]">
+    <div className="flex flex-col justify-center p-8 md:w-1/2 md:p-12">
+      <h1 className="[font-family:var(--font-merriweather)] text-3xl leading-tight font-bold text-[var(--color-prussian-blue)] md:text-4xl">
         {title}
       </h1>
       {description && (
-        <p className="mt-4 text-lg text-gray-600 leading-relaxed">{description}</p>
+        <p className="mt-4 text-lg leading-relaxed text-gray-600">
+          {description}
+        </p>
       )}
       {buttonText && buttonHref && (
         <div className="mt-8">
@@ -46,7 +48,7 @@ export function HeroA({
   );
 
   const imageBlock = (
-    <div className="relative md:w-1/2 h-64 md:h-auto min-h-64">
+    <div className="relative h-64 min-h-64 md:h-auto md:w-1/2">
       <Image
         src={imageSrc}
         alt={imageAlt}
@@ -60,7 +62,7 @@ export function HeroA({
   return (
     <section
       className={cn(
-        "flex flex-col md:flex-row overflow-hidden rounded-lg shadow-md",
+        "flex flex-col overflow-hidden rounded-lg shadow-md md:flex-row",
         className
       )}
     >

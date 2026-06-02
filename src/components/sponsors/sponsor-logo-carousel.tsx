@@ -20,29 +20,30 @@ export function SponsorLogoCarousel({ sponsors }: SponsorLogoCarouselProps) {
 
   return (
     <div
-      className="relative overflow-hidden bg-white py-6 shadow-inner-y-lg"
+      className="shadow-inner-y-lg relative overflow-hidden bg-white py-6"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-label="Sponsor logo carousel"
     >
       <div
-        className="flex gap-12 w-max"
+        className="flex w-max gap-12"
         style={{
           animation: "slide-rtl 20s linear infinite",
           animationPlayState: paused ? "paused" : "running",
         }}
       >
-        {items.map((sponsor, i) => (
-          sponsor.logo_url && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={`${sponsor.id}-${i}`}
-              src={sponsor.logo_url}
-              alt={`${sponsor.sponsor} logo`}
-              className="h-16 w-auto object-contain"
-            />
-          )
-        ))}
+        {items.map(
+          (sponsor, i) =>
+            sponsor.logo_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={`${sponsor.id}-${i}`}
+                src={sponsor.logo_url}
+                alt={`${sponsor.sponsor} logo`}
+                className="h-16 w-auto object-contain"
+              />
+            )
+        )}
       </div>
     </div>
   );

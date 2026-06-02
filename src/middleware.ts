@@ -12,7 +12,11 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // /account requires authentication
-  if (!user && pathname.startsWith("/account") && pathname !== "/account-login") {
+  if (
+    !user &&
+    pathname.startsWith("/account") &&
+    pathname !== "/account-login"
+  ) {
     return NextResponse.redirect(new URL("/account-login", request.url));
   }
 

@@ -16,7 +16,11 @@ export function RegisterForm({ onSuccess }: { onSuccess?: () => void }) {
       return;
     }
 
-    if (!/^\d{10}$/.test((formData.get("phone_number") as string).replace(/\D/g, ""))) {
+    if (
+      !/^\d{10}$/.test(
+        (formData.get("phone_number") as string).replace(/\D/g, "")
+      )
+    ) {
       setError("Phone number must be 10 digits.");
       return;
     }
@@ -40,12 +44,15 @@ export function RegisterForm({ onSuccess }: { onSuccess?: () => void }) {
           name="name"
           type="text"
           required
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-rojo-red)]"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--color-rojo-red)] focus:outline-none"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="reg-phone" className="text-sm font-medium text-gray-700">
+        <label
+          htmlFor="reg-phone"
+          className="text-sm font-medium text-gray-700"
+        >
           Phone Number
         </label>
         <input
@@ -54,12 +61,15 @@ export function RegisterForm({ onSuccess }: { onSuccess?: () => void }) {
           type="tel"
           required
           placeholder="10 digits"
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-rojo-red)]"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--color-rojo-red)] focus:outline-none"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="reg-email" className="text-sm font-medium text-gray-700">
+        <label
+          htmlFor="reg-email"
+          className="text-sm font-medium text-gray-700"
+        >
           Email
         </label>
         <input
@@ -68,12 +78,15 @@ export function RegisterForm({ onSuccess }: { onSuccess?: () => void }) {
           type="email"
           required
           autoComplete="email"
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-rojo-red)]"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--color-rojo-red)] focus:outline-none"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="reg-password" className="text-sm font-medium text-gray-700">
+        <label
+          htmlFor="reg-password"
+          className="text-sm font-medium text-gray-700"
+        >
           Password
         </label>
         <input
@@ -82,12 +95,15 @@ export function RegisterForm({ onSuccess }: { onSuccess?: () => void }) {
           type="password"
           required
           autoComplete="new-password"
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-rojo-red)]"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--color-rojo-red)] focus:outline-none"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="reg-confirm" className="text-sm font-medium text-gray-700">
+        <label
+          htmlFor="reg-confirm"
+          className="text-sm font-medium text-gray-700"
+        >
           Confirm Password
         </label>
         <input
@@ -96,7 +112,7 @@ export function RegisterForm({ onSuccess }: { onSuccess?: () => void }) {
           type="password"
           required
           autoComplete="new-password"
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-rojo-red)]"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--color-rojo-red)] focus:outline-none"
         />
       </div>
 

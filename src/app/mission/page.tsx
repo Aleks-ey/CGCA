@@ -5,17 +5,17 @@ export const metadata: Metadata = { title: "Our Mission" };
 export default function MissionPage() {
   return (
     <>
-      <div className="flex flex-col pt-20 md:py-20 justify-center text-center overflow-hidden">
-        <h2 className="text-4xl md:text-6xl text-[var(--color-rojo-red)] [font-family:serif]">
+      <div className="flex flex-col justify-center overflow-hidden pt-20 text-center md:py-20">
+        <h2 className="[font-family:serif] text-4xl text-[var(--color-rojo-red)] md:text-6xl">
           Strength in Unity
         </h2>
-        <h1 className="text-5xl md:text-8xl text-[var(--color-prussian-blue)] font-medium mt-2">
+        <h1 className="mt-2 text-5xl font-medium text-[var(--color-prussian-blue)] md:text-8xl">
           Our Mission
         </h1>
       </div>
 
-      <div className="flex flex-col p-10 justify-center text-left">
-        <ul className="list-disc space-y-2 md:space-y-6 text-lg md:text-2xl ml-8">
+      <div className="flex flex-col justify-center p-10 text-left">
+        <ul className="ml-8 list-disc space-y-2 text-lg md:space-y-6 md:text-2xl">
           {[
             "Promote the Georgian culture and heritage within the State of Colorado.",
             "Unite, engage and inspire the Georgian Community in the State of Colorado to stand as one in support of each other's growth, success, and development.",
@@ -24,7 +24,7 @@ export default function MissionPage() {
           ].map((item) => (
             <li
               key={item}
-              className="text-[var(--color-prussian-blue)] font-medium"
+              className="font-medium text-[var(--color-prussian-blue)]"
             >
               {item}
             </li>

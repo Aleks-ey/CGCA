@@ -33,19 +33,20 @@ export function EventCalendar({ events }: EventCalendarProps) {
     : [];
 
   return (
-    <div className="flex flex-col md:flex-row gap-6">
-      <div className="flex flex-col md:w-1/3 rounded-lg border p-2 h-fit">
+    <div className="flex flex-col gap-6 md:flex-row">
+      <div className="flex h-fit flex-col rounded-lg border p-2 md:w-1/3">
         <DayPicker
           mode="single"
           selected={selected}
           onSelect={setSelected}
           modifiers={{ hasEvent: eventDates }}
           modifiersClassNames={{
-            hasEvent: "border-2 border-[var(--color-prussian-blue)] rounded-full font-bold",
+            hasEvent:
+              "border-2 border-[var(--color-prussian-blue)] rounded-full font-bold",
           }}
         />
         {selected && (
-          <p className="text-sm text-center text-gray-500 pb-2">
+          <p className="pb-2 text-center text-sm text-gray-500">
             Selected:{" "}
             {selected.toLocaleDateString("en-US", {
               weekday: "long",
@@ -57,18 +58,21 @@ export function EventCalendar({ events }: EventCalendarProps) {
         )}
       </div>
 
-      <div className="md:w-2/3 flex flex-col gap-4">
+      <div className="flex flex-col gap-4 md:w-2/3">
         {!selected && (
-          <p className="text-gray-400 text-sm">Select a date to see events.</p>
+          <p className="text-sm text-gray-400">Select a date to see events.</p>
         )}
         {selected && selectedEvents.length === 0 && (
-          <div className="border rounded-lg p-4">
+          <div className="rounded-lg border p-4">
             <p className="text-gray-500">No events on this date.</p>
           </div>
         )}
         {selectedEvents.map((ev) => (
-          <div key={ev.id} className="flex flex-col md:flex-row border rounded-lg">
-            <div className="md:w-1/2 p-4">
+          <div
+            key={ev.id}
+            className="flex flex-col rounded-lg border md:flex-row"
+          >
+            <div className="p-4 md:w-1/2">
               <h2 className="text-lg font-medium">{ev.title}</h2>
               <p className="py-2 text-gray-700">{ev.description}</p>
               <p className="font-medium">
@@ -76,12 +80,12 @@ export function EventCalendar({ events }: EventCalendarProps) {
               </p>
             </div>
             {ev.image_url && (
-              <div className="md:w-1/2 md:p-2 content-center">
+              <div className="content-center md:w-1/2 md:p-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={ev.image_url}
                   alt={ev.title}
-                  className="shadow-lg rounded-b-lg md:rounded-lg w-full"
+                  className="w-full rounded-b-lg shadow-lg md:rounded-lg"
                 />
               </div>
             )}

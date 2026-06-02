@@ -7,7 +7,9 @@ describe("HeroA", () => {
     render(
       <HeroA title="Test Title" imageSrc="/test.jpg" imageAlt="Test image" />
     );
-    expect(screen.getByRole("heading", { name: /test title/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /test title/i })
+    ).toBeInTheDocument();
   });
 
   it("renders description when provided", () => {

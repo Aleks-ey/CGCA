@@ -41,25 +41,37 @@ export function AdminClient({ events, sponsors }: AdminClientProps) {
     });
   }
 
-  const [eventForm, setEventForm] = useState({ title: "", description: "", date: "", time: "", image_url: "" });
+  const [eventForm, setEventForm] = useState({
+    title: "",
+    description: "",
+    date: "",
+    time: "",
+    image_url: "",
+  });
 
   async function handleAddEvent(e: React.FormEvent) {
     e.preventDefault();
     startTransition(async () => {
       await supabase.from("events").insert(eventForm);
-      setEventForm({ title: "", description: "", date: "", time: "", image_url: "" });
+      setEventForm({
+        title: "",
+        description: "",
+        date: "",
+        time: "",
+        image_url: "",
+      });
       refresh();
     });
   }
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex gap-2 flex-wrap">
+      <div className="flex flex-wrap gap-2">
         {tabs.map((t) => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
               tab === t.key
                 ? "bg-[var(--color-prussian-blue)] text-white"
                 : "border border-gray-300 text-gray-600 hover:border-[var(--color-prussian-blue)]"
@@ -74,21 +86,33 @@ export function AdminClient({ events, sponsors }: AdminClientProps) {
 
       {tab === "events" && (
         <div className="flex flex-col gap-6">
-          <form onSubmit={handleAddEvent} className="flex flex-col gap-3 border rounded-lg p-5">
+          <form
+            onSubmit={handleAddEvent}
+            className="flex flex-col gap-3 rounded-lg border p-5"
+          >
             <h3 className="font-semibold">Add Event</h3>
-            {(["title", "description", "date", "time", "image_url"] as const).map((f) => (
+            {(
+              ["title", "description", "date", "time", "image_url"] as const
+            ).map((f) => (
               <div key={f} className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700 capitalize">{f.replace("_", " ")}</label>
+                <label className="text-sm font-medium text-gray-700 capitalize">
+                  {f.replace("_", " ")}
+                </label>
                 <input
                   type={f === "date" ? "date" : "text"}
                   value={eventForm[f]}
-                  onChange={(e) => setEventForm((prev) => ({ ...prev, [f]: e.target.value }))}
+                  onChange={(e) =>
+                    setEventForm((prev) => ({ ...prev, [f]: e.target.value }))
+                  }
                   required={f !== "image_url"}
                   className="rounded-md border border-gray-300 px-3 py-2 text-sm"
                 />
               </div>
             ))}
-            <button type="submit" className="rounded-md bg-[var(--color-prussian-blue)] py-2 text-sm text-white">
+            <button
+              type="submit"
+              className="rounded-md bg-[var(--color-prussian-blue)] py-2 text-sm text-white"
+            >
               Add Event
             </button>
           </form>
@@ -96,19 +120,31 @@ export function AdminClient({ events, sponsors }: AdminClientProps) {
           <div className="flex flex-col gap-3">
             <h3 className="font-semibold">All Events ({events.length})</h3>
             {events.map((ev) => (
-              <div key={ev.id} className="flex justify-between items-start border rounded-lg p-4 gap-4">
+              <div
+                key={ev.id}
+                className="flex items-start justify-between gap-4 rounded-lg border p-4"
+              >
                 <div>
                   <p className="font-medium">{ev.title}</p>
-                  <p className="text-sm text-gray-500">{ev.date} at {ev.time}</p>
+                  <p className="text-sm text-gray-500">
+                    {ev.date} at {ev.time}
+                  </p>
                 </div>
-                <button onClick={() => deleteEvent(ev.id)} className={btnDanger}>Delete</button>
+                <button
+                  onClick={() => deleteEvent(ev.id)}
+                  className={btnDanger}
+                >
+                  Delete
+                </button>
               </div>
             ))}
           </div>
 
           <div className="flex flex-col gap-2">
             <h3 className="font-semibold">Sponsors ({sponsors.length})</h3>
-            <p className="text-sm text-gray-500">Manage sponsors directly from the Supabase dashboard.</p>
+            <p className="text-sm text-gray-500">
+              Manage sponsors directly from the Supabase dashboard.
+            </p>
           </div>
         </div>
       )}

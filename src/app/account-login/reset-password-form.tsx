@@ -24,7 +24,7 @@ export function ResetPasswordForm() {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="text-sm text-gray-500 hover:text-[var(--color-rojo-red)] underline"
+        className="text-sm text-gray-500 underline hover:text-[var(--color-rojo-red)]"
       >
         Forgot your password?
       </button>
@@ -40,8 +40,11 @@ export function ResetPasswordForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-2">
-      <label htmlFor="reset-email" className="text-sm font-medium text-gray-700">
+    <form onSubmit={handleSubmit} className="mt-2 flex flex-col gap-3">
+      <label
+        htmlFor="reset-email"
+        className="text-sm font-medium text-gray-700"
+      >
         Enter your email to reset your password:
       </label>
       <input
@@ -49,9 +52,13 @@ export function ResetPasswordForm() {
         name="email"
         type="email"
         required
-        className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-rojo-red)]"
+        className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--color-rojo-red)] focus:outline-none"
       />
-      {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
+      {error && (
+        <p role="alert" className="text-sm text-red-600">
+          {error}
+        </p>
+      )}
       <button
         type="submit"
         disabled={isPending}

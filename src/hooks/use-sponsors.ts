@@ -19,7 +19,7 @@ export function useSponsors() {
 
   useEffect(() => {
     refresh();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { sponsors, loading, refresh };

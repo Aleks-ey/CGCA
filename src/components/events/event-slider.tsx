@@ -38,19 +38,19 @@ export function EventSlider({ events }: EventSliderProps) {
   return (
     <div className="flex flex-col md:flex-row">
       {/* Left panel */}
-      <div className="flex flex-col md:w-1/3 mx-auto pb-6 bg-[var(--color-prussian-blue)]">
-        <div className="text-white ml-4 mt-4 md:mt-28">
+      <div className="mx-auto flex flex-col bg-[var(--color-prussian-blue)] pb-6 md:w-1/3">
+        <div className="mt-4 ml-4 text-white md:mt-28">
           <h1 className="text-4xl font-medium">Upcoming Events</h1>
-          <p className="text-2xl font-light py-2">
+          <p className="py-2 text-2xl font-light">
             Check out all of our upcoming events within the next two months.
           </p>
         </div>
-        <div className="flex flex-row ml-auto mr-6 md:mt-24 text-white scale-150">
+        <div className="mr-6 ml-auto flex scale-150 flex-row text-white md:mt-24">
           <button
             onClick={prev}
             disabled={index === 0}
             aria-label="Previous event"
-            className="disabled:opacity-40 p-1"
+            className="p-1 disabled:opacity-40"
           >
             ‹
           </button>
@@ -58,7 +58,7 @@ export function EventSlider({ events }: EventSliderProps) {
             onClick={next}
             disabled={index >= upcoming.length - 1}
             aria-label="Next event"
-            className="disabled:opacity-40 p-1"
+            className="p-1 disabled:opacity-40"
           >
             ›
           </button>
@@ -67,12 +67,12 @@ export function EventSlider({ events }: EventSliderProps) {
 
       {/* Slider */}
       <div
-        className="md:w-2/3 md:max-h-[500px] p-4 content-center overflow-hidden whitespace-nowrap bg-[var(--color-rojo-red)]"
+        className="content-center overflow-hidden bg-[var(--color-rojo-red)] p-4 whitespace-nowrap md:max-h-[500px] md:w-2/3"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
         {upcoming.length === 0 ? (
-          <div className="p-4 inline-block rounded-lg bg-white">
+          <div className="inline-block rounded-lg bg-white p-4">
             <h2 className="text-lg font-medium">No upcoming events</h2>
             <p>Check back later for more events!</p>
           </div>
@@ -80,24 +80,24 @@ export function EventSlider({ events }: EventSliderProps) {
           upcoming.map((ev, i) => (
             <div
               key={ev.id}
-              className="h-full w-full md:w-1/3 overflow-hidden inline-block rounded-lg shadow-md shadow-[var(--color-prussian-blue)] align-top whitespace-normal"
+              className="inline-block h-full w-full overflow-hidden rounded-lg align-top whitespace-normal shadow-[var(--color-prussian-blue)] shadow-md md:w-1/3"
               style={{
                 transform: `translateX(${(i - index) * 100}%)`,
                 transition: "transform 0.5s",
               }}
             >
-              <div className="flex flex-col h-full w-full bg-white rounded-lg">
+              <div className="flex h-full w-full flex-col rounded-lg bg-white">
                 {ev.image_url && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={ev.image_url}
                     alt={ev.title}
-                    className="h-auto md:h-2/5 w-auto rounded-t-lg object-fill"
+                    className="h-auto w-auto rounded-t-lg object-fill md:h-2/5"
                   />
                 )}
-                <div className="flex flex-col md:h-3/5 px-4 py-2">
+                <div className="flex flex-col px-4 py-2 md:h-3/5">
                   <h2 className="text-lg font-medium">{ev.title}</h2>
-                  <div className="py-2 overflow-y-auto">
+                  <div className="overflow-y-auto py-2">
                     <p>{ev.description}</p>
                   </div>
                   <div className="pt-2 font-medium">
@@ -107,7 +107,7 @@ export function EventSlider({ events }: EventSliderProps) {
                     <a
                       href="https://ticketstripe.com/independencedaygeorgia"
                       target="_top"
-                      className="inline-block bg-[#f8a102] text-white text-sm font-bold px-3 py-1 rounded"
+                      className="inline-block rounded bg-[#f8a102] px-3 py-1 text-sm font-bold text-white"
                     >
                       Click Here to Buy Tickets
                     </a>

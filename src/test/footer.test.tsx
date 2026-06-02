@@ -5,7 +5,9 @@ import { Footer } from "@/components/layout/footer";
 describe("Footer", () => {
   it("renders org info", () => {
     render(<Footer />);
-    expect(screen.getAllByText(/Colorado Georgian Community Association/i).length).toBeGreaterThan(0);
+    expect(
+      screen.getAllByText(/Colorado Georgian Community Association/i).length
+    ).toBeGreaterThan(0);
     expect(screen.getByText(/Denver, CO/i)).toBeInTheDocument();
   });
 
@@ -19,7 +21,9 @@ describe("Footer", () => {
   it("has accessible social links", () => {
     render(<Footer />);
     expect(screen.getByRole("link", { name: /facebook/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /instagram/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /instagram/i })
+    ).toBeInTheDocument();
   });
 
   it("social links open in new tab", () => {

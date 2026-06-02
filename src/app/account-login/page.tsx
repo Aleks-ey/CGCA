@@ -7,8 +7,8 @@ export const metadata: Metadata = { title: "Sign In" };
 
 export default function AccountLoginPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 py-12">
-      <div className="w-full max-w-md flex flex-col gap-8">
+    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 py-12">
+      <div className="flex w-full max-w-md flex-col gap-8">
         <div className="text-center">
           <h1
             className="text-3xl font-bold text-[var(--color-prussian-blue)]"
@@ -16,13 +16,17 @@ export default function AccountLoginPage() {
           >
             Sign In
           </h1>
-          <p className="mt-2 text-gray-600">Access your CGCA community account.</p>
+          <p className="mt-2 text-gray-600">
+            Access your CGCA community account.
+          </p>
         </div>
 
         <LoginForm />
 
         <div className="flex flex-col gap-4 border-t pt-6">
-          <p className="text-sm text-gray-500 text-center">Don&apos;t have an account?</p>
+          <p className="text-center text-sm text-gray-500">
+            Don&apos;t have an account?
+          </p>
           <RegisterSection />
           <div className="text-center">
             <ResetPasswordForm />
@@ -35,8 +39,8 @@ export default function AccountLoginPage() {
 
 function RegisterSection() {
   return (
-    <details className="border rounded-lg">
-      <summary className="px-4 py-3 cursor-pointer text-sm font-medium text-[var(--color-prussian-blue)] select-none">
+    <details className="rounded-lg border">
+      <summary className="cursor-pointer px-4 py-3 text-sm font-medium text-[var(--color-prussian-blue)] select-none">
         Create a new account ▸
       </summary>
       <div className="px-4 pb-4">
