@@ -1,4 +1,4 @@
-# Project Context for Claude Code
+# CGCA — Project Context for Claude Code
 
 This file is read automatically by Claude Code when you run `claude` in this project.
 Update it as your project evolves to give Claude the context it needs.
@@ -16,23 +16,32 @@ Update it as your project evolves to give Claude the context it needs.
 
 ```
 src/
-  app/           # Next.js App Router pages and layouts
+  app/                  # Next.js App Router pages and layouts
+    layout.tsx          # Root layout
+    page.tsx            # Home page
   components/
-    ui/          # Reusable primitive components (Button, Input, etc.)
-    layout/      # Layout components (Header, Footer, Sidebar)
-  hooks/         # Custom React hooks
+    ui/                 # Reusable primitive components (Button, etc.)
+    layout/             # Layout components (Header, Footer, Sidebar)
+  hooks/
+    use-supabase.ts     # Supabase client hook
+    use-user.ts         # Current user hook
   lib/
-    supabase/    # Supabase clients: client.ts, server.ts, middleware.ts
-    utils.ts     # cn() and other utilities
-  styles/        # globals.css (Tailwind theme config)
-  test/          # Vitest setup and shared test utilities
+    supabase/           # Supabase clients: client.ts, server.ts, middleware.ts
+    utils.ts            # cn() and other utilities
+  styles/
+    globals.css         # Tailwind v4 theme config and global styles
+  test/
+    setup.ts            # Vitest setup
+    tscconfig.json      # TypeScript config for tests
   types/
-    supabase.ts  # Auto-generated Supabase DB types (npm run db:generate)
+    supabase.ts         # Auto-generated Supabase DB types (npm run db:generate)
+    global.d.ts         # Global type declarations
 supabase/
-  config.toml    # Local Supabase stack configuration
-  migrations/    # SQL migration files
-  seed.sql       # Local dev seed data
-.devcontainer/   # Docker dev container config with Claude Code
+  config.toml           # Local Supabase stack configuration
+  migrations/           # SQL migration files
+  seed.sql              # Local dev seed data
+.devcontainer/          # Docker dev container config with Claude Code
+.vscode/                # VS Code workspace settings
 ```
 
 ## Key Conventions

@@ -13,6 +13,11 @@ if [ ! -f .env.local ]; then
   echo "Don't forget to fill in your Supabase credentials in .env.local"
 fi
 
+# Source .env.local in every new shell so ANTHROPIC_API_KEY is available to `claude`
+if ! grep -q 'source /app/.env.local' ~/.bashrc 2>/dev/null; then
+  echo '[ -f /app/.env.local ] && set -a && source /app/.env.local && set +a' >> ~/.bashrc
+fi
+
 # Set up git hooks (lint + type-check before commit)
 echo "Configuring git hooks..."
 git config core.hooksPath .githooks 2>/dev/null || true

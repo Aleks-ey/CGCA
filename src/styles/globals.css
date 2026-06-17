@@ -2,11 +2,67 @@
 
 /* ============================================================
    Tailwind v4 CSS-first theme configuration
-   Customize your design tokens here.
    ============================================================ */
 
+/* --- Custom fonts --- */
+@font-face {
+  font-family: AbrilFatface;
+  src: url("/fonts/AbrilFatface-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: BebasNeue;
+  src: url("/fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: FragmentMono;
+  src: url("/fonts/FragmentMono-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: JosefinSans;
+  src: url("/fonts/JosefinSans-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: Lobster;
+  src: url("/fonts/Lobster-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: MartianMono;
+  src: url("/fonts/MartianMono-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: Merriweather;
+  src: url("/fonts/Merriweather-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: Oxygen;
+  src: url("/fonts/Oxygen-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: RobotoSlab;
+  src: url("/fonts/RobotoSlab-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: TiltPrism;
+  src: url("/fonts/TiltPrism-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
 @theme {
-  /* --- Colors --- */
+  /* --- Brand colors --- */
+  --color-peach: #f4dcd3;
+  --color-rojo-red: #dc2626;
+  --color-prussian-blue: #1e293b;
+
+  /* --- System colors --- */
   --color-background: #ffffff;
   --color-foreground: #0a0a0a;
 
@@ -39,6 +95,20 @@
   /* --- Font families --- */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-merriweather: Merriweather, Georgia, serif;
+  --font-oxygen: Oxygen, sans-serif;
+  --font-bebas: BebasNeue, sans-serif;
+  --font-josefin: JosefinSans, sans-serif;
+  --font-lobster: Lobster, cursive;
+  --font-fragment: FragmentMono, monospace;
+  --font-martian: MartianMono, monospace;
+  --font-roboto-slab: RobotoSlab, serif;
+  --font-tilt: TiltPrism, sans-serif;
+  --font-abril: AbrilFatface, cursive;
+
+  /* --- New design system fonts (style-config 2026-06-12) --- */
+  --font-cormorant: var(--font-cormorant-garamond), Georgia, serif;
+  --font-nunito: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Dark mode overrides */
@@ -62,6 +132,12 @@
     --color-border: #1e293b;
     --color-input: #1e293b;
     --color-ring: #cbd5e1;
+
+    /* Brand colors have no dark-mode inversion — they are used as-is */
+    --color-peach: #f4dcd3;
+    --color-rojo-red: #dc2626;
+    --color-wine-plum: #7d2831;
+    --color-prussian-blue: #1e293b;
   }
 }
 
@@ -69,12 +145,72 @@
    Base styles
    ============================================================ */
 
-* {
+/* * {
   border-color: var(--color-border);
-}
+} */
 
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
+}
+
+/* ============================================================
+   Utility classes carried from source
+   ============================================================ */
+
+/* Invert icon to white (used for social icons on dark backgrounds) */
+.filter-white {
+  filter: invert(89%) sepia(45%) saturate(23%) hue-rotate(349deg)
+    brightness(106%) contrast(106%);
+}
+
+.pause-animation {
+  animation-play-state: paused !important;
+}
+
+/* Generated named classes — managed by /project:tailwind-convert */
+.span1 {
+  @apply bg-[var(--color-foreground)] [background-size:200%] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent];
+}
+
+.h11 {
+  @apply [font-family:var(--font-merriweather)] text-4xl font-bold md:text-5xl;
+}
+
+.h12 {
+  @apply [font-family:var(--font-merriweather)] text-3xl font-bold text-[var(--color-prussian-blue)];
+}
+
+/* ============================================================
+   Keyframe animations
+   ============================================================ */
+
+/* Sponsor logo carousel */
+@keyframes slide-ltr {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-rtl {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Home hero CGCA letter highlight pan */
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
 }

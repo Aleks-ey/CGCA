@@ -1,6 +1,6 @@
-# Next.js Starter Template
+# CGCA
 
-A production-ready Next.js template with TypeScript, Tailwind CSS v4, Supabase, and a Docker dev container pre-configured with Claude Code.
+Colorado Georgian Community Association (CGCA) website.
 
 ## What's Included
 
@@ -38,8 +38,8 @@ Claude Code is pre-installed in the container. Just run `claude` in the terminal
 
 ```bash
 # 1. Clone and personalize
-git clone https://github.com/your-username/nextjs-starter.git my-app
-cd my-app
+git clone https://github.com/Aleks-ey/cgca.git my-app
+cd cgca
 bash init.sh
 
 # 2. Install dependencies

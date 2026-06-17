@@ -3,7 +3,7 @@ import type { Database } from "@/types/supabase";
 
 /**
  * Creates a Supabase client for use in Client Components.
- * Uses the public anon key — safe to expose in the browser.
+ * Uses the publishable key — safe to expose in the browser.
  *
  * Usage:
  *   const supabase = createClient();
@@ -12,6 +12,6 @@ import type { Database } from "@/types/supabase";
 export function createClient() {
   return createBrowserClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!
   );
 }

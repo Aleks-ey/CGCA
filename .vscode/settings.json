@@ -26,13 +26,20 @@
   "vitest.commandLine": "npx vitest",
   "cSpell.words": [
     "aarch",
+    "Analyse",
+    "behaviour",
+    "Chakra",
     "clsx",
+    "colour",
+    "colours",
     "eacces",
     "hookspath",
     "jsdom",
     "NEXTAUTH",
     "nextjs",
+    "Reformatter",
     "Supabase",
+    "tscconfig",
     "Turbopack",
     "vitest"
   ]
