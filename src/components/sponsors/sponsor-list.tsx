@@ -42,7 +42,7 @@ export function SponsorList({ sponsors }: SponsorListProps) {
                 href={sponsor.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--color-rojo-red)] hover:underline"
+                className="break-all text-[var(--color-rojo-red)] hover:underline"
               >
                 🌐 {sponsor.website}
               </a>

@@ -22,6 +22,7 @@ RUN mkdir -p /app/node_modules \
 
 # Install Claude Code globally as node user
 USER node
+RUN mkdir -p /home/node/.claude
 RUN npm install -g @anthropic-ai/claude-code
 
 CMD ["sleep", "infinity"]

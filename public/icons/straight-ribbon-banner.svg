@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 110">
+  <g fill="#ffffff" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="miter">
+    <!-- left tail + fold -->
+    <path d="M8 26 H66 V66 H84 V88 H8 L30 57 Z"/>
+    <!-- right tail + fold -->
+    <path d="M432 26 H374 V66 H356 V88 H432 L410 57 Z"/>
+    <!-- main panel -->
+    <rect x="66" y="8" width="308" height="58"/>
+    <!-- fold crease lines -->
+    <path d="M66 66 L84 88" fill="none"/>
+    <path d="M374 66 L356 88" fill="none"/>
+  </g>
+</svg>

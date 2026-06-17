@@ -10,12 +10,7 @@ export default function AccountLoginPage() {
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 py-12">
       <div className="flex w-full max-w-md flex-col gap-8">
         <div className="text-center">
-          <h1
-            className="text-3xl font-bold text-[var(--color-prussian-blue)]"
-            style={{ fontFamily: "var(--font-merriweather)" }}
-          >
-            Sign In
-          </h1>
+          <h1 className="h12">Sign In</h1>
           <p className="mt-2 text-gray-600">
             Access your CGCA community account.
           </p>

@@ -17,7 +17,9 @@ export default async function EventsPage() {
       <EventSlider events={events ?? []} />
 
       <div className="flex flex-col justify-center px-4 py-20 md:px-10">
-        <h2 className="mb-6 text-2xl font-semibold">Calendar View</h2>
+        <h2 className="mb-6 text-2xl font-semibold text-[var(--color-prussian-blue)]">
+          Calendar View
+        </h2>
         <EventCalendar events={events ?? []} />
       </div>
     </>

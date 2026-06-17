@@ -23,12 +23,7 @@ export default async function AccountPage() {
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-10 px-6 py-12 md:px-16">
       <div className="flex items-center justify-between">
-        <h1
-          className="text-3xl font-bold text-[var(--color-prussian-blue)]"
-          style={{ fontFamily: "var(--font-merriweather)" }}
-        >
-          My Account
-        </h1>
+        <h1 className="h12">My Account</h1>
         <form action={signOut}>
           <button
             type="submit"

@@ -11,6 +11,7 @@ const navLinks: { href: Route<string>; label: string }[] = [
   { href: "/meet", label: "Meet the Board" },
   { href: "/sponsors", label: "Sponsors" },
   { href: "/events", label: "Events" },
+  { href: "/school" as Route<string>, label: "Sunday School" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
@@ -20,7 +21,7 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-lg">
+    <header className="sticky top-0 z-100 bg-white shadow-lg">
       <div className="flex h-auto items-center p-1 md:px-2 md:py-1">
         {/* Logo */}
         <Link

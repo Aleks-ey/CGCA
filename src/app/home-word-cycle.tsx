@@ -45,12 +45,7 @@ export function HomeWordCycle() {
 
   return (
     <p
-      className="flex h-1/3 items-center justify-center p-4 text-[10vw] md:text-[5vw]"
-      style={{
-        color: "black",
-        mixBlendMode: "screen",
-        backgroundColor: "rgb(244, 220, 211)",
-      }}
+      className="flex h-1/3 items-center justify-center bg-[var(--color-peach)] p-4 text-[10vw] text-black mix-blend-screen md:text-[5vw]"
       aria-live="polite"
       aria-label={`Word: ${word}`}
     >

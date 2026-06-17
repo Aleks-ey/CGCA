@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 import type { Database } from "@/types/supabase";
 
 type Sponsor = Database["public"]["Tables"]["sponsors"]["Row"];
@@ -26,11 +27,10 @@ export function SponsorLogoCarousel({ sponsors }: SponsorLogoCarouselProps) {
       aria-label="Sponsor logo carousel"
     >
       <div
-        className="flex w-max gap-12"
-        style={{
-          animation: "slide-rtl 20s linear infinite",
-          animationPlayState: paused ? "paused" : "running",
-        }}
+        className={cn(
+          "flex w-max animate-[slide-rtl_20s_linear_infinite] gap-12",
+          paused && "pause-animation"
+        )}
       >
         {items.map(
           (sponsor, i) =>

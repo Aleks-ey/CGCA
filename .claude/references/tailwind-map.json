@@ -1,0 +1,82 @@
+{
+  "_comment": "Auto-managed by /project:tailwind-convert. Do not edit namedClasses or counters by hand.",
+  "styleConversions": {
+    "{\"fontFamily\":\"var(--font-merriweather)\"}": {
+      "label": "font-merriweather",
+      "tailwind": "[font-family:var(--font-merriweather)]",
+      "inlineOnly": false
+    },
+    "{\"fontFamily\":\"var(--font-oxygen)\"}": {
+      "label": "font-oxygen",
+      "tailwind": "[font-family:var(--font-oxygen)]",
+      "inlineOnly": false
+    },
+    "{\"backgroundAttachment\":\"fixed\",\"backgroundImage\":\"url('/images/Tbilisi1.jpg')\",\"backgroundSize\":\"cover\"}": {
+      "label": "tbilisi-hero-bg",
+      "tailwind": "bg-[url('/images/Tbilisi1.jpg')] bg-cover bg-fixed",
+      "inlineOnly": false
+    },
+    "{\"backgroundColor\":\"rgb(244,220,211)\",\"color\":\"black\",\"mixBlendMode\":\"screen\"}": {
+      "label": "word-cycle-blend",
+      "tailwind": "text-black mix-blend-screen bg-[var(--color-peach)]",
+      "inlineOnly": false
+    },
+    "{\"WebkitBackgroundClip\":\"text\",\"WebkitTextFillColor\":\"transparent\",\"backgroundColor\":\"black\",\"backgroundClip\":\"text\",\"backgroundSize\":\"200%\"}": {
+      "label": "cgca-letter-highlight",
+      "tailwind": null,
+      "inlineOnly": false,
+      "namedClassRef": "span1"
+    },
+    "{\"top\":\"DYNAMIC\",\"zIndex\":\"DYNAMIC\"}": {
+      "label": "sticky-card-position",
+      "tailwind": null,
+      "inlineOnly": true,
+      "keepAsIs": true
+    },
+    "{\"transform\":\"DYNAMIC\",\"transition\":\"transform 0.5s\"}": {
+      "label": "slider-transform",
+      "tailwind": "transition-transform duration-500",
+      "inlineOnly": false,
+      "keepDynamicKeys": ["transform"]
+    },
+    "{\"animation\":\"slide-rtl 20s linear infinite\",\"animationPlayState\":\"DYNAMIC\"}": {
+      "label": "carousel-animation",
+      "tailwind": "animate-[slide-rtl_20s_linear_infinite]",
+      "inlineOnly": false,
+      "dynamicClassToggle": "paused && \"pause-animation\""
+    }
+  },
+  "namedClasses": {
+    "span1": {
+      "elementType": "span",
+      "appliedTailwind": "bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] bg-black [background-size:200%]",
+      "cssApply": "@apply bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] bg-black [background-size:200%];",
+      "sourceFiles": ["src/app/page.tsx"],
+      "occurrences": 4,
+      "createdAt": "2026-06-04"
+    },
+    "h11": {
+      "elementType": "h1",
+      "appliedTailwind": "text-4xl font-bold md:text-5xl [font-family:var(--font-merriweather)]",
+      "cssApply": "@apply text-4xl font-bold md:text-5xl [font-family:var(--font-merriweather)];",
+      "sourceFiles": ["src/app/gallery/page.tsx", "src/app/sponsors/page.tsx"],
+      "occurrences": 2,
+      "createdAt": "2026-06-04"
+    },
+    "h12": {
+      "elementType": "h1",
+      "appliedTailwind": "text-3xl font-bold text-[var(--color-prussian-blue)] [font-family:var(--font-merriweather)]",
+      "cssApply": "@apply text-3xl font-bold text-[var(--color-prussian-blue)] [font-family:var(--font-merriweather)];",
+      "sourceFiles": [
+        "src/app/account-login/page.tsx",
+        "src/app/account/page.tsx"
+      ],
+      "occurrences": 2,
+      "createdAt": "2026-06-04"
+    }
+  },
+  "counters": {
+    "span": 2,
+    "h1": 3
+  }
+}

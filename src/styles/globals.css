@@ -105,6 +105,10 @@
   --font-roboto-slab: RobotoSlab, serif;
   --font-tilt: TiltPrism, sans-serif;
   --font-abril: AbrilFatface, cursive;
+
+  /* --- New design system fonts (style-config 2026-06-12) --- */
+  --font-cormorant: var(--font-cormorant-garamond), Georgia, serif;
+  --font-nunito: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Dark mode overrides */
@@ -132,6 +136,7 @@
     /* Brand colors have no dark-mode inversion — they are used as-is */
     --color-peach: #f4dcd3;
     --color-rojo-red: #dc2626;
+    --color-wine-plum: #7d2831;
     --color-prussian-blue: #1e293b;
   }
 }
@@ -140,9 +145,9 @@
    Base styles
    ============================================================ */
 
-* {
+/* * {
   border-color: var(--color-border);
-}
+} */
 
 body {
   background-color: var(--color-background);
@@ -162,6 +167,19 @@ body {
 
 .pause-animation {
   animation-play-state: paused !important;
+}
+
+/* Generated named classes — managed by /project:tailwind-convert */
+.span1 {
+  @apply bg-[var(--color-foreground)] [background-size:200%] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent];
+}
+
+.h11 {
+  @apply [font-family:var(--font-merriweather)] text-4xl font-bold md:text-5xl;
+}
+
+.h12 {
+  @apply [font-family:var(--font-merriweather)] text-3xl font-bold text-[var(--color-prussian-blue)];
 }
 
 /* ============================================================

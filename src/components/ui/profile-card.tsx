@@ -60,7 +60,7 @@ export type ProfileCardProps = ProfileCardCropped | ProfileCardFull;
 
 function buildImageContainerStyle(
   croppedImageHeight?: number | string,
-  imageAspect?: "square" | "portrait" | number,
+  imageAspect?: "square" | "portrait" | number
 ): React.CSSProperties {
   if (croppedImageHeight !== undefined) {
     return {
@@ -125,8 +125,8 @@ function NameRow({ name, verified, light }: NameRowProps) {
     <div className="flex items-center gap-1.5">
       <span
         className={cn(
-          "truncate text-base font-bold leading-tight",
-          light ? "text-white" : "text-[var(--color-prussian-blue)]",
+          "truncate text-base leading-tight font-bold",
+          light ? "text-white" : "text-[var(--color-prussian-blue)]"
         )}
       >
         {name}
@@ -141,7 +141,16 @@ function NameRow({ name, verified, light }: NameRowProps) {
 // ---------------------------------------------------------------------------
 
 export function ProfileCard(props: ProfileCardProps) {
-  const { name, verified, bio, imageSrc, imageAlt, about, imageObjectPosition, className } = props;
+  const {
+    name,
+    verified,
+    bio,
+    imageSrc,
+    imageAlt,
+    about,
+    imageObjectPosition,
+    className,
+  } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const aboutButtonRef = useRef<HTMLButtonElement>(null);
@@ -181,7 +190,7 @@ export function ProfileCard(props: ProfileCardProps) {
       className={cn(
         "mt-2 rounded-full border px-3 py-1 text-xs font-medium transition-colors",
         "border-[var(--color-rojo-red)] text-[var(--color-rojo-red)]",
-        "hover:bg-[var(--color-rojo-red)] hover:text-white",
+        "hover:bg-[var(--color-rojo-red)] hover:text-white"
       )}
     >
       About
@@ -199,8 +208,8 @@ export function ProfileCard(props: ProfileCardProps) {
         "bg-white/95 backdrop-blur-sm",
         "transition-all duration-300 ease-out",
         isOpen
-          ? "visible translate-y-0 opacity-100 pointer-events-auto"
-          : "invisible translate-y-4 opacity-0 pointer-events-none",
+          ? "pointer-events-auto visible translate-y-0 opacity-100"
+          : "pointer-events-none invisible translate-y-4 opacity-0"
       )}
     >
       <div className="mb-3 flex items-center justify-between">
@@ -214,7 +223,7 @@ export function ProfileCard(props: ProfileCardProps) {
           className={cn(
             "flex h-7 w-7 items-center justify-center rounded-full",
             "text-slate-500 transition-colors",
-            "hover:bg-slate-100 hover:text-slate-800",
+            "hover:bg-slate-100 hover:text-slate-800"
           )}
         >
           <svg
@@ -250,7 +259,7 @@ export function ProfileCard(props: ProfileCardProps) {
     const { croppedImageHeight, imageAspect } = props;
     const imgContainerStyle = buildImageContainerStyle(
       croppedImageHeight,
-      imageAspect,
+      imageAspect
     );
 
     return (
@@ -258,7 +267,7 @@ export function ProfileCard(props: ProfileCardProps) {
         className={cn(
           "relative overflow-hidden rounded-3xl shadow-md",
           "bg-[var(--color-secondary)]",
-          className,
+          className
         )}
       >
         <div {...(isOpen ? { inert: true } : {})} className="contents">
@@ -269,13 +278,17 @@ export function ProfileCard(props: ProfileCardProps) {
               alt={imageAlt ?? name}
               fill
               className="object-cover"
-              style={imageObjectPosition ? { objectPosition: imageObjectPosition } : undefined}
+              style={
+                imageObjectPosition
+                  ? { objectPosition: imageObjectPosition }
+                  : undefined
+              }
               sizes="(max-width: 400px) 100vw, 340px"
             />
           </div>
 
           {/* Content area */}
-          <div className="bg-white px-4 pb-4 pt-3">
+          <div className="bg-white px-4 pt-3 pb-4">
             <NameRow name={name} verified={verified} />
             <p className="mt-0.5 truncate text-sm text-[var(--color-muted-foreground)]">
               {bio}
@@ -296,7 +309,7 @@ export function ProfileCard(props: ProfileCardProps) {
     <article
       className={cn(
         "relative overflow-hidden rounded-3xl shadow-md",
-        className,
+        className
       )}
     >
       <div {...(isOpen ? { inert: true } : {})} className="contents">
@@ -306,7 +319,11 @@ export function ProfileCard(props: ProfileCardProps) {
           alt={imageAlt ?? name}
           fill
           className="object-cover"
-          style={imageObjectPosition ? { objectPosition: imageObjectPosition } : undefined}
+          style={
+            imageObjectPosition
+              ? { objectPosition: imageObjectPosition }
+              : undefined
+          }
           sizes="(max-width: 400px) 100vw, 340px"
         />
 
@@ -316,16 +333,16 @@ export function ProfileCard(props: ProfileCardProps) {
             aria-hidden="true"
             style={{ height: resolveBlurHeight(blurHeight) }}
             className={cn(
-              "absolute bottom-0 left-0 right-0 z-10",
+              "absolute right-0 bottom-0 left-0 z-10",
               blurStyle === "frosted"
-                ? "backdrop-blur-md bg-white/10"
-                : "bg-gradient-to-t from-black/70 to-transparent",
+                ? "bg-white/10 backdrop-blur-md"
+                : "bg-gradient-to-t from-black/70 to-transparent"
             )}
           />
         )}
 
         {/* Text overlay */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 p-4">
+        <div className="absolute right-0 bottom-0 left-0 z-10 p-4">
           <NameRow name={name} verified={verified} light />
           <p className="mt-0.5 text-sm text-white/80">{bio}</p>
           {aboutButton}

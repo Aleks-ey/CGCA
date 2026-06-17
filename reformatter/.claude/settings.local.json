@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//app/**)",
+      "Bash(npm install *)",
+      "Bash(sed -n '55,70p' /app/src/components/layout/header.tsx)",
+      "Bash(sed -n '120,135p' /app/src/components/layout/header.tsx)",
+      "Bash(sed -n '30,45p' /app/src/components/ui/hero-a.tsx)"
+    ]
+  }
+}

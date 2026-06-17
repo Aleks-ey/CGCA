@@ -5,10 +5,7 @@ export const metadata: Metadata = { title: "Contact Us" };
 export default function ContactPage() {
   return (
     <div className="flex flex-col items-center px-4 py-16">
-      <h1
-        className="mb-4 text-4xl font-bold text-[var(--color-prussian-blue)]"
-        style={{ fontFamily: "var(--font-merriweather)" }}
-      >
+      <h1 className="mb-4 [font-family:var(--font-merriweather)] text-4xl font-bold text-[var(--color-prussian-blue)]">
         Contact Us
       </h1>
       <p className="mb-10 max-w-lg text-center text-gray-600">

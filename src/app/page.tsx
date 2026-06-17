@@ -56,18 +56,12 @@ export default function HomePage() {
   return (
     <>
       {/* ---- Hero ---- */}
-      <div className="mx-auto mt-14 flex w-[90vw] flex-col justify-center md:mx-10 md:flex-row">
+      <div className="mx-auto my-28 flex w-[90vw] flex-col justify-center md:mx-10 md:my-20 md:flex-row">
         <div className="mr-4 flex w-full flex-col md:w-[45%] md:py-16">
-          <h1
-            className="text-[8vw] leading-[1.1] md:text-[4vw]"
-            style={{ fontFamily: "var(--font-merriweather)" }}
-          >
+          <h1 className="[font-family:var(--font-merriweather)] text-[8vw] leading-[1.1] text-black md:text-[4vw]">
             Welcome to the Heart of Georgian Culture in Colorado!
           </h1>
-          <p
-            className="mt-[1vw] text-xl leading-[1.1]"
-            style={{ fontFamily: "var(--font-oxygen)" }}
-          >
+          <p className="mt-[1vw] [font-family:var(--font-oxygen)] text-xl leading-[1.1] text-gray-800">
             Join Us: Be Part of a Vibrant Georgian Legacy.
           </p>
           <div className="mt-8">
@@ -81,77 +75,24 @@ export default function HomePage() {
         </div>
 
         {/* Word-cycle overlay */}
-        <div
-          className="mt-12 flex min-h-48 items-center justify-center md:mt-0 md:min-h-0 md:w-[55%]"
-          style={{
-            backgroundImage: "url('/images/Tbilisi1.jpg')",
-            backgroundSize: "cover",
-            backgroundAttachment: "fixed",
-          }}
-        >
+        <div className="mt-12 flex min-h-48 items-center justify-center bg-[url('/images/Tbilisi1.jpg')] bg-cover bg-fixed md:mt-0 md:min-h-0 md:w-[55%]">
           <HomeWordCycle />
         </div>
       </div>
 
       {/* ---- CGCA full name ---- */}
-      <div className="mt-28 flex flex-col justify-center text-center">
-        <h2
-          className="text-[35px] leading-none"
-          style={{ fontFamily: "var(--font-merriweather)" }}
-        >
-          <span
-            style={{
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundColor: "black",
-              backgroundSize: "200%",
-            }}
-          >
-            C
-          </span>
-          olorado{" "}
-          <span
-            style={{
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundColor: "black",
-              backgroundSize: "200%",
-            }}
-          >
-            G
-          </span>
-          eorgian{" "}
-          <span
-            style={{
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundColor: "black",
-              backgroundSize: "200%",
-            }}
-          >
-            C
-          </span>
-          ommunity{" "}
-          <span
-            style={{
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundColor: "black",
-              backgroundSize: "200%",
-            }}
-          >
-            A
-          </span>
+      <div className="mt-28 flex flex-col justify-center bg-[var(--color-wine-plum)] py-12 text-center text-white shadow-[5px_5px_10px_black]">
+        <h2 className="[font-family:var(--font-merriweather)] text-[35px] leading-none">
+          <span className="span1">C</span>
+          olorado <span className="span1 text-[var(--color-rojo-red)]">G</span>
+          eorgian <span className="span1 text-[var(--color-rojo-red)]">C</span>
+          ommunity <span className="span1 text-[var(--color-rojo-red)]">A</span>
           ssociation
         </h2>
       </div>
 
       {/* ---- Mission cards ---- */}
-      <div className="flex justify-center">
+      <div className="flex justify-center py-12 md:py-16 lg:py-20">
         <div className="mt-10 flex flex-col justify-center px-10 text-center md:flex-row md:gap-16">
           {[
             {
@@ -184,22 +125,21 @@ export default function HomePage() {
                 height={200}
                 className="mx-auto"
               />
-              <h3
-                className="mt-3 text-xl leading-none"
-                style={{ fontFamily: "var(--font-merriweather)" }}
-              >
+              <h3 className="mt-3 [font-family:var(--font-merriweather)] text-xl leading-none text-[var(--color-prussian-blue)]">
                 {card.title}
               </h3>
-              <p className="mt-2 text-[18px] leading-7">{card.body}</p>
+              <p className="mt-2 text-[18px] leading-7 text-[var(--color-muted-foreground)]">
+                {card.body}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
       {/* ---- About sections (sticky scroll cards) ---- */}
-      <div className="relative mt-20 w-full">
+      <div className="relative mt-20 w-full bg-[var(--color-prussian-blue)] bg-gradient-to-b from-[var(--color-prussian-blue)] to-[var(--color-wine-plum)] py-16">
         <div className="mx-12 flex justify-center text-center">
-          <h2 className="text-2xl text-gray-400">
+          <h2 className="text-muted-foreground text-2xl">
             Explore the Wonders of Georgian Culture
           </h2>
         </div>
@@ -211,8 +151,8 @@ export default function HomePage() {
             style={{ top: `${section.topVw}vw`, zIndex: section.zIndex }}
           >
             <div className="mx-[30px] mt-[10vh] md:mr-[20px] md:ml-[50px] md:w-1/2">
-              <h3 className="text-[xx-large]">{section.title}</h3>
-              <p className="mt-2 text-[18px] leading-[1.3] md:text-base">
+              <h3 className="text-[xx-large] text-gray-900">{section.title}</h3>
+              <p className="mt-2 text-[18px] leading-[1.3] text-gray-800 md:text-base">
                 {section.body}
               </p>
             </div>
@@ -230,9 +170,11 @@ export default function HomePage() {
       </div>
 
       {/* ---- Support CTA ---- */}
-      <div className="mx-auto mt-40 mb-28 flex w-[90%] flex-col justify-center rounded-[10px] bg-[var(--color-prussian-blue)] px-2 py-12 text-center text-white shadow-[5px_5px_10px_black] md:w-[60%] md:px-6 md:py-8">
-        <h2 className="text-3xl md:text-3xl">Become a Supporter Today!</h2>
-        <p className="mt-4 text-lg">
+      <div className="mx-auto my-40 flex min-h-[40vh] w-[90%] flex-col justify-center rounded-[10px] px-2 py-12 text-center text-white md:w-[60%] md:px-6 md:py-8">
+        <h2 className="text-3xl text-[var(--color-prussian-blue)] md:text-3xl">
+          Become a Supporter Today!
+        </h2>
+        <p className="mt-4 text-lg leading-relaxed text-[var(--color-muted)]">
           Making a meaningful impact on our local community only becomes a
           reality through the generous support of individuals like you, who
           believe in our mission and are willing to donate to help us create a

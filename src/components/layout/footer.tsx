@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Route } from "next";
 
 export function Footer() {
   return (
@@ -42,6 +43,12 @@ export function Footer() {
             className="text-sm text-slate-300 transition-colors hover:text-white"
           >
             Events
+          </Link>
+          <Link
+            href={"/school" as Route<string>}
+            className="text-sm text-slate-300 transition-colors hover:text-white"
+          >
+            Sunday School
           </Link>
         </div>
 

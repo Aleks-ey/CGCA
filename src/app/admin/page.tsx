@@ -20,10 +20,7 @@ export default async function AdminPage() {
 
   return (
     <div className="px-6 py-12 md:px-16">
-      <h1
-        className="mb-10 text-3xl font-bold text-[var(--color-prussian-blue)]"
-        style={{ fontFamily: "var(--font-merriweather)" }}
-      >
+      <h1 className="mb-10 [font-family:var(--font-merriweather)] text-3xl font-bold text-[var(--color-prussian-blue)]">
         Admin Panel
       </h1>
 

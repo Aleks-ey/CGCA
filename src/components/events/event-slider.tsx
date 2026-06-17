@@ -73,7 +73,9 @@ export function EventSlider({ events }: EventSliderProps) {
       >
         {upcoming.length === 0 ? (
           <div className="inline-block rounded-lg bg-white p-4">
-            <h2 className="text-lg font-medium text-gray-900">No upcoming events</h2>
+            <h2 className="text-lg font-medium text-gray-900">
+              No upcoming events
+            </h2>
             <p className="text-gray-700">Check back later for more events!</p>
           </div>
         ) : (
@@ -93,7 +95,9 @@ export function EventSlider({ events }: EventSliderProps) {
                   />
                 )}
                 <div className="flex flex-col px-4 py-2 md:h-3/5">
-                  <h2 className="text-lg font-medium text-gray-900">{ev.title}</h2>
+                  <h2 className="text-lg font-medium text-gray-900">
+                    {ev.title}
+                  </h2>
                   <div className="overflow-y-auto py-2">
                     <p className="text-gray-800">{ev.description}</p>
                   </div>
