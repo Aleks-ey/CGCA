@@ -34,7 +34,7 @@ export function EventCalendar({ events }: EventCalendarProps) {
 
   return (
     <div className="flex flex-col gap-6 md:flex-row">
-      <div className="flex h-fit flex-col rounded-lg border p-2 md:w-1/3">
+      <div className="flex h-fit flex-col rounded-lg border p-2 text-gray-900 md:w-1/3">
         <DayPicker
           mode="single"
           selected={selected}
@@ -43,6 +43,10 @@ export function EventCalendar({ events }: EventCalendarProps) {
           modifiersClassNames={{
             hasEvent:
               "border-2 border-[var(--color-prussian-blue)] rounded-full font-bold",
+          }}
+          classNames={{
+            selected: "!bg-[#7d2831] !text-white rounded-full",
+            today: "font-bold text-[var(--color-rojo-red)]",
           }}
         />
         {selected && (

@@ -1,144 +1,76 @@
-"use client";
+import boardMembersJson from "./board-members.json";
+import { ProfileCard } from "@/components/ui/profile-card";
 
-import { useState } from "react";
-import Image from "next/image";
+type BoardMemberData = {
+  role: string;
+  term_start_date: string;
+  term_end_date: string;
+  contact_info: { email: string; tel: string };
+  bio: string;
+  img?: string;
+  objectPosition?: string;
+};
 
-const boardMembers = [
-  {
-    name: "Lasha Abashidze",
-    role: "President",
-    img: "/images/LashaHeadshot.JPG",
-    objectPosition: "50% 10%",
-    bio: `Lasha was born and raised in Tbilisi, Georgia. He pursued a career in Information Technologies and gained valuable experience working at the National Agency of Public Registry.
-
-In 2015, Lasha relocated to the United States but missed the close-knit Georgian community back home. Determined to bring Georgians together, he initiated gatherings and provided support to those in need in Georgia. Additionally, Lasha recognized the importance of preserving Georgian culture and language for future generations, leading to the establishment of a Georgian language Sunday school.
-
-Through his efforts, Lasha aims to unite Georgians living abroad and foster a strong sense of cultural identity and pride.
-
-"I believe it's important for Georgians living away from home to support our people and preserve our culture." — Lasha`,
-  },
-  {
-    name: "Ruslan Huhua",
-    role: "Vice President",
-    img: "/images/RuslanHeadshot.jpg",
-    objectPosition: "50% 90%",
-    bio: `Born and raised in the city of Sochi, Ruslan always had a passion for learning and exploring culture. After completing his early education in Sochi, he went on to pursue his studies in theology at the Tbilisi Theological Seminary and the Gelati Theological Academy and Seminary in Kutaisi, Georgia.
-
-In 2001, Ruslan made a life-changing decision to move to the United States with his wife and two sons.
-
-After his third son was born in the U.S.A., he started to see how important it was to preserve Georgian culture and traditions over generations. This led him to join forces with fellow Georgians to start the Colorado Georgian Community Association.`,
-  },
-  {
-    name: "Tea Todua",
-    role: "Board Director",
-    img: "/images/TeaHeadshot.jpg",
-    objectPosition: "50% 10%",
-    bio: `Tea Todua was born and raised in the beautiful country of Georgia, next to the Black Sea in the small town of Zugdidi. She graduated from David Tvildiani Medical University with an MD degree.
-
-Tea is committed to building a career in medicine, serving humanity. She worked as an IR (interventional radiologist) in the department of vascular surgery and mentored students at different medical schools in Georgia.
-
-"I have always been impassioned to promote my country. In that spirit, I am very excited to join forces with my fellow members in developing cultural and educational projects and hosting events in our community of Colorado." — Tea`,
-  },
-  {
-    name: "Alexander Narsia",
-    role: "Treasurer",
-    img: "/images/AlexanderHeadshot.jpg",
-    objectPosition: "50% 10%",
-    bio: `Alexander Narsia was born on a train in Sukhumi and raised in Tbilisi, Georgia. Thereafter he immigrated with his family to Israel at the age of 9 and to the United States of America at the age of 13. Alexander competed professionally in the sport of tennis and has transitioned into his professional career as an engineer in the oil and gas sector.
-
-Alexander believes that being of Georgian decent is not a nationality, but a way of life and is excited to help unite the Georgian community in the State of Colorado.`,
-  },
-  {
-    name: "Donald Pittser",
-    role: "Secretary",
-    img: "/images/DonaldHeadshot.jpg",
-    objectPosition: "50% 50%",
-    bio: `My first visit to Tbilisi, Georgia was in 2008 to visit a possible business opportunity. This resulted in me living in Tbilisi for five months in 2010. Falling in love with Georgia, like many who have been fortunate enough to visit, I returned to Georgia each year before meeting my lovely wife, Tea Todua. Now we have three little Georgian/American daughters. I am excited to help the Colorado Georgian Community Association become a reality.`,
-  },
-  {
-    name: "Elene Murvanidze",
-    role: "Board Director",
-    img: "/images/EleneHeadshot.jpeg",
-    objectPosition: "50% 20%",
-    bio: `Elene Murvanidze was born in Rustavi, Georgia, in a uniquely diverse neighborhood that sparked her passion for cultural exchange. Eager to explore the world, Elene participated in a high school exchange in Caldwell, Idaho, and later studied Economics and Public Relations in Izmir, Turkey. She later earned a Master's at the University of Denver and a Ph.D. in Economics at Colorado State University.
-
-As a board member of the Colorado Georgian Community Association, Elene is dedicated to strengthening the local Georgian community by fostering meaningful connections and creating opportunities for cultural exchange.`,
-  },
-];
-
-function BoardMemberCard({ member }: { member: (typeof boardMembers)[0] }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <div className="group relative w-3/5 cursor-pointer overflow-hidden md:w-1/2">
-        <button
-          className="absolute top-0 z-10 w-full bg-slate-800 p-4 text-white opacity-0 transition-all duration-300 group-hover:opacity-100"
-          onClick={() => setOpen(true)}
-          aria-label={`View bio for ${member.name}`}
-        >
-          About
-        </button>
-        <div className="transition-all duration-300 group-hover:translate-y-[50px]">
-          <Image
-            src={member.img}
-            alt={`${member.name}, ${member.role}`}
-            width={400}
-            height={256}
-            className="h-64 w-full object-cover"
-            style={{ objectPosition: member.objectPosition }}
-          />
-        </div>
-        <div className="py-2 text-center">
-          <h2 className="text-lg font-semibold">{member.name}</h2>
-          <p className="text-gray-600">{member.role}</p>
-        </div>
-      </div>
-
-      {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
-          onClick={() => setOpen(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Bio for ${member.name}`}
-        >
-          <div
-            className="h-4/5 w-11/12 overflow-hidden rounded-lg bg-white p-8 md:h-2/3 md:w-2/3"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 className="text-2xl font-medium">{member.name}</h3>
-            <p className="text-xl font-normal text-gray-500">{member.role}</p>
-            <div className="h-[calc(100%-5rem)] overflow-y-auto pt-8">
-              {member.bio.split("\n\n").map((para, i) => (
-                <p key={i} className="mb-4 leading-relaxed">
-                  {para}
-                </p>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
+const boardMembers = Object.entries(
+  boardMembersJson as Record<string, BoardMemberData>
+).map(([name, data]) => ({ name, ...data }));
 
 export default function MeetPage() {
   return (
     <>
-      <div className="flex justify-center pt-20 pb-10 text-center md:pt-32 md:pb-16">
-        <h2 className="px-8 text-3xl font-medium text-[var(--color-prussian-blue)] md:text-5xl">
-          Meet the Board
-          <br />
-          Dedicated to Carrying Out Our Mission
+      <div className="mx-auto w-full max-w-6xl py-16 text-center">
+        <div className="relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 440 110"
+            className="w-full"
+          >
+            <g
+              fill="#7d2831"
+              stroke="#1a1a1a"
+              strokeWidth="1"
+              strokeLinejoin="miter"
+            >
+              <path d="M8 26 H66 V66 H84 V88 H8 L30 57 Z" />
+              <path d="M432 26 H374 V66 H356 V88 H432 L410 57 Z" />
+              <rect x="66" y="8" width="308" height="58" />
+              <path d="M66 66 L84 88" fill="none" />
+              <path d="M374 66 L356 88" fill="none" />
+            </g>
+          </svg>
+          <div className="absolute inset-x-[15%] top-0 flex h-[80%] flex-col items-center justify-center text-center">
+            <h1 className="text-xl font-medium text-[var(--color-primary)] md:text-3xl lg:text-4xl">
+              MEET THE BOARD
+            </h1>
+            <hr className="my-1 hidden w-1/2 border-t md:my-2 md:block" />
+            <h2 className="mb-2 hidden text-lg font-medium text-[var(--color-foreground)] md:block md:text-2xl lg:text-3xl">
+              DEDICATED TO CARRYING OUT OUR MISSION
+            </h2>
+          </div>
+        </div>
+        <h2 className="text-lg font-medium text-[var(--color-wine-plum)] md:hidden">
+          DEDICATED TO CARRYING OUT OUR MISSION
         </h2>
       </div>
 
-      <div className="flex flex-col items-center justify-center justify-items-center gap-y-12 py-10 md:grid md:grid-cols-3">
-        {boardMembers.map((member) => (
-          <BoardMemberCard key={member.name} member={member} />
-        ))}
-      </div>
+      <section className="w-full rounded-t-2xl bg-[var(--color-peach)]/40 py-16">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 justify-items-center gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3">
+          {boardMembers.map((member) => (
+            <ProfileCard
+              key={member.name}
+              variant="cropped"
+              name={member.name}
+              bio={member.role}
+              imageSrc={member.img!}
+              imageAlt={`${member.name}, ${member.role}`}
+              about={member.bio.split("\n\n")}
+              croppedImageHeight={300}
+              imageObjectPosition={member.objectPosition}
+              className="w-full max-w-xs"
+            />
+          ))}
+        </div>
+      </section>
     </>
   );
 }
