@@ -83,11 +83,7 @@ export default function HomePage() {
       {/* ---- CGCA full name ---- */}
       <div className="mt-28 flex flex-col justify-center bg-[var(--color-wine-plum)] py-12 text-center text-white shadow-[5px_5px_10px_black]">
         <h2 className="[font-family:var(--font-merriweather)] text-[35px] leading-none">
-          <span className="span1">C</span>
-          olorado <span className="span1 text-[var(--color-rojo-red)]">G</span>
-          eorgian <span className="span1 text-[var(--color-rojo-red)]">C</span>
-          ommunity <span className="span1 text-[var(--color-rojo-red)]">A</span>
-          ssociation
+          Colorado Georgian Community Association
         </h2>
       </div>
 

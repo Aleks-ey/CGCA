@@ -67,7 +67,7 @@ export function EventSlider({ events }: EventSliderProps) {
 
       {/* Slider */}
       <div
-        className="content-center overflow-hidden bg-[#7d2831] p-4 whitespace-nowrap md:max-h-[500px] md:w-2/3"
+        className="content-center overflow-hidden bg-[var(--color-wine-plum)] p-4 whitespace-nowrap md:max-h-[500px] md:w-2/3"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >

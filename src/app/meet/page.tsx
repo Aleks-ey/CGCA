@@ -18,7 +18,7 @@ const boardMembers = Object.entries(
 export default function MeetPage() {
   return (
     <>
-      <div className="mx-auto w-full max-w-6xl py-16 text-center">
+      <section className="mx-auto w-full max-w-6xl py-16 text-center">
         <div className="relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ export default function MeetPage() {
         <h2 className="text-lg font-medium text-[var(--color-wine-plum)] md:hidden">
           DEDICATED TO CARRYING OUT OUR MISSION
         </h2>
-      </div>
+      </section>
 
       <section className="w-full rounded-t-2xl bg-[var(--color-peach)]/40 py-16">
         <div className="mx-auto grid w-full max-w-6xl grid-cols-1 justify-items-center gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3">

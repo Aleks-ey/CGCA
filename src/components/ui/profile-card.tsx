@@ -162,8 +162,6 @@ export function ProfileCard(props: ProfileCardProps) {
   useEffect(() => {
     if (isOpen) {
       closeButtonRef.current?.focus();
-    } else {
-      aboutButtonRef.current?.focus();
     }
   }, [isOpen]);
 

@@ -60,6 +60,7 @@
   /* --- Brand colors --- */
   --color-peach: #f4dcd3;
   --color-rojo-red: #dc2626;
+  --color-wine-plum: #7d2831;
   --color-prussian-blue: #1e293b;
 
   /* --- System colors --- */
@@ -113,7 +114,7 @@
 
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* :root {
     --color-background: #0a0a0a;
     --color-foreground: #ededed;
 
@@ -131,14 +132,14 @@
 
     --color-border: #1e293b;
     --color-input: #1e293b;
-    --color-ring: #cbd5e1;
+    --color-ring: #cbd5e1; */
 
-    /* Brand colors have no dark-mode inversion — they are used as-is */
-    --color-peach: #f4dcd3;
+  /* Brand colors have no dark-mode inversion — they are used as-is */
+  /* --color-peach: #f4dcd3;
     --color-rojo-red: #dc2626;
     --color-wine-plum: #7d2831;
     --color-prussian-blue: #1e293b;
-  }
+  } */
 }
 
 /* ============================================================
@@ -170,10 +171,6 @@ body {
 }
 
 /* Generated named classes — managed by /project:tailwind-convert */
-.span1 {
-  @apply bg-[var(--color-foreground)] [background-size:200%] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent];
-}
-
 .h11 {
   @apply [font-family:var(--font-merriweather)] text-4xl font-bold md:text-5xl;
 }

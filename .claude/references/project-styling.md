@@ -49,7 +49,7 @@ Critical fixes only — priorities:
 
 ## Tailwind Named Classes (generated)
 
-- `.span1`: `bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] bg-black [background-size:200%]` — gradient letter knockout effect used on CGCA initials
+- `.span1`: `bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] bg-black [background-size:200%]` — gradient letter knockout effect used on CGCA initials NOTE: span1 is deprecated.
 - `.h11`: `text-4xl font-bold md:text-5xl [font-family:var(--font-merriweather)]` — large Merriweather heading; migrate to `--font-cormorant` when refactoring
 - `.h12`: `text-3xl font-bold text-[var(--color-prussian-blue)] [font-family:var(--font-merriweather)]` — medium prussian-blue heading; migrate to `--font-cormorant` when refactoring
 
