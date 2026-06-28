@@ -185,7 +185,7 @@ export default function SchoolPage() {
             <p className="mb-2 text-sm font-semibold tracking-widest text-[var(--color-rojo-red)] uppercase">
               Meet Our Educator
             </p>
-            <h2 className="mb-4 [font-family:var(--font-cormorant)] text-3xl font-bold text-[var(--color-primary)] md:text-4xl">
+            <h2 className="mb-4 [font-family:var(--font-cormorant)] text-3xl font-bold text-white md:text-4xl">
               Tamar Kochlamazashvili
             </h2>
             <p className="leading-relaxed text-white">
