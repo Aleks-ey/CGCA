@@ -288,9 +288,7 @@ export function ProfileCard(props: ProfileCardProps) {
           {/* Content area */}
           <div className="bg-white px-4 pt-3 pb-4">
             <NameRow name={name} verified={verified} />
-            <p className="mt-0.5 truncate text-sm text-[var(--color-muted-foreground)]">
-              {bio}
-            </p>
+            <p className="mt-0.5 truncate text-sm text-gray-400">{bio}</p>
             {aboutButton}
           </div>
         </div>

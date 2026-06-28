@@ -124,7 +124,7 @@ export default function HomePage() {
               <h3 className="mt-3 [font-family:var(--font-merriweather)] text-xl leading-none text-[var(--color-prussian-blue)]">
                 {card.title}
               </h3>
-              <p className="mt-2 text-[18px] leading-7 text-[var(--color-muted-foreground)]">
+              <p className="mt-2 text-[18px] leading-7 text-gray-500">
                 {card.body}
               </p>
             </div>
@@ -135,7 +135,7 @@ export default function HomePage() {
       {/* ---- About sections (sticky scroll cards) ---- */}
       <div className="relative mt-20 w-full bg-[var(--color-prussian-blue)] bg-gradient-to-b from-[var(--color-prussian-blue)] to-[var(--color-wine-plum)] py-16">
         <div className="mx-12 flex justify-center text-center">
-          <h2 className="text-muted-foreground text-2xl">
+          <h2 className="text-2xl text-gray-400">
             Explore the Wonders of Georgian Culture
           </h2>
         </div>
@@ -170,7 +170,7 @@ export default function HomePage() {
         <h2 className="text-3xl text-[var(--color-prussian-blue)] md:text-3xl">
           Become a Supporter Today!
         </h2>
-        <p className="mt-4 text-lg leading-relaxed text-[var(--color-muted)]">
+        <p className="mt-4 text-lg leading-relaxed text-gray-700">
           Making a meaningful impact on our local community only becomes a
           reality through the generous support of individuals like you, who
           believe in our mission and are willing to donate to help us create a

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 //         className
 //       )}
 //     >
-//       <div className="text-center text-[var(--color-muted-foreground)]">
+//       <div className="text-center text-gray-700">
 //         <svg
 //           className="mx-auto mb-3 h-12 w-12 opacity-40"
 //           xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +188,7 @@ export default function SchoolPage() {
             <h2 className="mb-4 [font-family:var(--font-cormorant)] text-3xl font-bold text-[var(--color-primary)] md:text-4xl">
               Tamar Kochlamazashvili
             </h2>
-            <p className="leading-relaxed text-[var(--color-foreground)]">
+            <p className="leading-relaxed text-white">
               Tamar Kochlamazashvili leads the educational program, bringing
               more than <strong>25 years of experience</strong> working with
               children in both Georgia and the United States. She specializes in
@@ -196,7 +196,7 @@ export default function SchoolPage() {
               and has taught in schools and child development centers in
               Tbilisi, Georgia, and Denver, Colorado.
             </p>
-            <p className="mt-4 leading-relaxed text-[var(--color-foreground)]">
+            <p className="mt-4 leading-relaxed text-white">
               Drawing on extensive classroom experience and expertise in
               languages, Mrs. Tamar creates meaningful educational experiences
               tailored to each child&apos;s needs.

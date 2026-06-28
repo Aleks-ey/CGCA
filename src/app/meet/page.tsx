@@ -39,11 +39,11 @@ export default function MeetPage() {
             </g>
           </svg>
           <div className="absolute inset-x-[15%] top-0 flex h-[80%] flex-col items-center justify-center text-center">
-            <h1 className="text-xl font-medium text-[var(--color-primary)] md:text-3xl lg:text-4xl">
+            <h1 className="text-xl font-medium text-white md:text-3xl lg:text-4xl">
               MEET THE BOARD
             </h1>
             <hr className="my-1 hidden w-1/2 border-t md:my-2 md:block" />
-            <h2 className="mb-2 hidden text-lg font-medium text-[var(--color-foreground)] md:block md:text-2xl lg:text-3xl">
+            <h2 className="mb-2 hidden text-lg font-medium text-white md:block md:text-2xl lg:text-3xl">
               DEDICATED TO CARRYING OUT OUR MISSION
             </h2>
           </div>
