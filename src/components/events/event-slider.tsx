@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import type { Database } from "@/types/supabase";
+import { EventCard } from "@/components/events/event-card";
 
 type CalendarEvent = Database["public"]["Tables"]["events"]["Row"];
 
@@ -28,6 +29,7 @@ export function EventSlider({ events }: EventSliderProps) {
   };
 
   const upcoming = events.filter((ev) => {
+    if (!ev.date) return false;
     const evDate = new Date(ev.date);
     const now = new Date();
     const twoMonths = new Date();
@@ -38,7 +40,7 @@ export function EventSlider({ events }: EventSliderProps) {
   return (
     <div className="flex flex-col md:flex-row">
       {/* Left panel */}
-      <div className="mx-auto flex flex-col bg-[var(--color-prussian-blue)] pb-6 md:w-1/3">
+      <div className="mx-auto flex flex-col bg-[var(--color-prussian-blue)] pb-6 md:w-1/4">
         <div className="mt-4 ml-4 text-white md:mt-28">
           <h1 className="text-4xl font-medium">Upcoming Events</h1>
           <p className="py-2 text-2xl font-light">
@@ -67,7 +69,7 @@ export function EventSlider({ events }: EventSliderProps) {
 
       {/* Slider */}
       <div
-        className="content-center overflow-hidden bg-[var(--color-wine-plum)] p-4 whitespace-nowrap md:max-h-[500px] md:w-2/3"
+        className="content-center overflow-hidden bg-[var(--color-wine-plum)] p-4 whitespace-nowrap md:max-h-[680px] md:w-3/4"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -82,39 +84,10 @@ export function EventSlider({ events }: EventSliderProps) {
           upcoming.map((ev, i) => (
             <div
               key={ev.id}
-              className="inline-block h-full w-full overflow-hidden rounded-lg align-top whitespace-normal shadow-[var(--color-prussian-blue)] shadow-md transition-transform duration-500 md:w-1/3"
+              className="inline-block h-full w-full overflow-hidden rounded-lg align-top whitespace-normal shadow-[var(--color-prussian-blue)] shadow-md transition-transform duration-500 md:w-1/2"
               style={{ transform: `translateX(${(i - index) * 100}%)` }}
             >
-              <div className="flex h-full w-full flex-col rounded-lg bg-white">
-                {ev.image_url && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={ev.image_url}
-                    alt={ev.title}
-                    className="h-auto w-auto rounded-t-lg object-fill md:h-2/5"
-                  />
-                )}
-                <div className="flex flex-col px-4 py-2 md:h-3/5">
-                  <h2 className="text-lg font-medium text-gray-900">
-                    {ev.title}
-                  </h2>
-                  <div className="overflow-y-auto py-2">
-                    <p className="text-gray-800">{ev.description}</p>
-                  </div>
-                  <div className="pt-2 font-medium text-gray-700">
-                    {ev.date} &nbsp;—&nbsp; Starts at {ev.time}
-                  </div>
-                  <div className="mt-2">
-                    <a
-                      href="https://ticketstripe.com/independencedaygeorgia"
-                      target="_top"
-                      className="inline-block rounded bg-[#f8a102] px-3 py-1 text-sm font-bold text-white"
-                    >
-                      Click Here to Buy Tickets
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <EventCard event={ev} variant="vertical" />
             </div>
           ))
         )}

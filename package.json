@@ -26,6 +26,7 @@
     "@supabase/supabase-js": "^2.106.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "jszip": "^3.10.1",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-day-picker": "^10.0.1",

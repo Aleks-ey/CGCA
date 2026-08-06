@@ -4,6 +4,8 @@ import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import type { Database } from "@/types/supabase";
+import { EventCard } from "@/components/events/event-card";
+import { parseLocalDate } from "@/lib/date";
 
 type CalendarEvent = Database["public"]["Tables"]["events"]["Row"];
 
@@ -11,20 +13,18 @@ interface EventCalendarProps {
   events: CalendarEvent[];
 }
 
-function parseLocalDate(dateStr: string): Date {
-  const [y, m, d] = dateStr.split("-").map(Number);
-  return new Date(y, m - 1, d);
-}
-
 export function EventCalendar({ events }: EventCalendarProps) {
   const [selected, setSelected] = useState<Date | undefined>(undefined);
 
-  const eventDates = events.map((ev) => parseLocalDate(ev.date));
+  const eventDates = events
+    .map((ev) => parseLocalDate(ev.date))
+    .filter((d): d is Date => d !== null);
 
   const selectedEvents = selected
     ? events.filter((ev) => {
         const d = parseLocalDate(ev.date);
         return (
+          d !== null &&
           d.getFullYear() === selected.getFullYear() &&
           d.getMonth() === selected.getMonth() &&
           d.getDate() === selected.getDate()
@@ -72,28 +72,7 @@ export function EventCalendar({ events }: EventCalendarProps) {
           </div>
         )}
         {selectedEvents.map((ev) => (
-          <div
-            key={ev.id}
-            className="flex flex-col rounded-lg border md:flex-row"
-          >
-            <div className="p-4 md:w-1/2">
-              <h2 className="text-lg font-medium">{ev.title}</h2>
-              <p className="py-2 text-gray-700">{ev.description}</p>
-              <p className="font-medium">
-                {ev.date} &nbsp;—&nbsp; Starts at {ev.time}
-              </p>
-            </div>
-            {ev.image_url && (
-              <div className="content-center md:w-1/2 md:p-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={ev.image_url}
-                  alt={ev.title}
-                  className="w-full rounded-b-lg shadow-lg md:rounded-lg"
-                />
-              </div>
-            )}
-          </div>
+          <EventCard key={ev.id} event={ev} variant="horizontal" />
         ))}
       </div>
     </div>

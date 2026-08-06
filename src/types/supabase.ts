@@ -1,8 +1,3 @@
-/**
- * Supabase types for the CGCA schema.
- * Regenerate after schema changes: npm run db:generate (requires running local Supabase)
- */
-
 export type Json =
   | string
   | number
@@ -12,162 +7,524 @@ export type Json =
   | Json[];
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "12.2.3 (519615d)";
+  };
   public: {
     Tables: {
-      profile: {
+      business: {
         Row: {
-          id: string;
-          email: string;
-          name: string;
-          phone_number: string;
+          approved: boolean | null;
+          company_name: string | null;
+          created_at: string;
+          description: string | null;
+          email: string | null;
+          id: number;
+          image_url: string | null;
+          location: string | null;
+          owner: string | null;
+          phone_number: string | null;
+          profile_id: string | null;
+          type: string | null;
         };
         Insert: {
-          id: string;
-          email: string;
-          name?: string;
-          phone_number?: string;
+          approved?: boolean | null;
+          company_name?: string | null;
+          created_at?: string;
+          description?: string | null;
+          email?: string | null;
+          id?: number;
+          image_url?: string | null;
+          location?: string | null;
+          owner?: string | null;
+          phone_number?: string | null;
+          profile_id?: string | null;
+          type?: string | null;
         };
         Update: {
-          id?: string;
-          email?: string;
-          name?: string;
-          phone_number?: string;
+          approved?: boolean | null;
+          company_name?: string | null;
+          created_at?: string;
+          description?: string | null;
+          email?: string | null;
+          id?: number;
+          image_url?: string | null;
+          location?: string | null;
+          owner?: string | null;
+          phone_number?: string | null;
+          profile_id?: string | null;
+          type?: string | null;
         };
         Relationships: [
           {
-            foreignKeyName: "profile_id_fkey";
-            columns: ["id"];
-            isOneToOne: true;
-            referencedRelation: "users";
+            foreignKeyName: "public_business_profile_id_fkey";
+            columns: ["profile_id"];
+            isOneToOne: false;
+            referencedRelation: "profile";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      business_edits: {
+        Row: {
+          approved: boolean | null;
+          company_name: string | null;
+          created_at: string;
+          description: string | null;
+          email: string | null;
+          id: number;
+          image_url: string | null;
+          location: string | null;
+          owner: string | null;
+          phone_number: string | null;
+          profile_id: string | null;
+          type: string | null;
+        };
+        Insert: {
+          approved?: boolean | null;
+          company_name?: string | null;
+          created_at?: string;
+          description?: string | null;
+          email?: string | null;
+          id?: number;
+          image_url?: string | null;
+          location?: string | null;
+          owner?: string | null;
+          phone_number?: string | null;
+          profile_id?: string | null;
+          type?: string | null;
+        };
+        Update: {
+          approved?: boolean | null;
+          company_name?: string | null;
+          created_at?: string;
+          description?: string | null;
+          email?: string | null;
+          id?: number;
+          image_url?: string | null;
+          location?: string | null;
+          owner?: string | null;
+          phone_number?: string | null;
+          profile_id?: string | null;
+          type?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_business_edits_profile_id_fkey";
+            columns: ["profile_id"];
+            isOneToOne: false;
+            referencedRelation: "profile";
             referencedColumns: ["id"];
           },
         ];
       };
       events: {
         Row: {
+          created_at: string;
+          cta_url: string | null;
+          date: string | null;
+          description: string | null;
+          end_time: string | null;
           id: number;
-          title: string;
-          description: string;
-          date: string;
-          time: string;
-          image_url: string;
+          image_url: string | null;
+          location: string | null;
+          start_time: string | null;
+          title: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          cta_url?: string | null;
+          date?: string | null;
+          description?: string | null;
+          end_time?: string | null;
+          id?: number;
+          image_url?: string | null;
+          location?: string | null;
+          start_time?: string | null;
+          title?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          cta_url?: string | null;
+          date?: string | null;
+          description?: string | null;
+          end_time?: string | null;
+          id?: number;
+          image_url?: string | null;
+          location?: string | null;
+          start_time?: string | null;
+          title?: string | null;
+        };
+        Relationships: [];
+      };
+      for_hire: {
+        Row: {
+          about: string | null;
+          approved: boolean | null;
+          created_at: string;
+          email: string | null;
+          id: number;
+          location: string | null;
+          name: string | null;
+          phone_number: string | null;
+          profession: string | null;
+          profile_id: string | null;
+          work_outside: boolean | null;
+        };
+        Insert: {
+          about?: string | null;
+          approved?: boolean | null;
+          created_at?: string;
+          email?: string | null;
+          id?: number;
+          location?: string | null;
+          name?: string | null;
+          phone_number?: string | null;
+          profession?: string | null;
+          profile_id?: string | null;
+          work_outside?: boolean | null;
+        };
+        Update: {
+          about?: string | null;
+          approved?: boolean | null;
+          created_at?: string;
+          email?: string | null;
+          id?: number;
+          location?: string | null;
+          name?: string | null;
+          phone_number?: string | null;
+          profession?: string | null;
+          profile_id?: string | null;
+          work_outside?: boolean | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_for_hire_profile_id_fkey";
+            columns: ["profile_id"];
+            isOneToOne: false;
+            referencedRelation: "profile";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      for_hire_edits: {
+        Row: {
+          about: string | null;
+          approved: boolean | null;
+          created_at: string;
+          email: string | null;
+          id: number;
+          location: string | null;
+          name: string | null;
+          phone_number: string | null;
+          profession: string | null;
+          profile_id: string | null;
+          work_outside: boolean | null;
+        };
+        Insert: {
+          about?: string | null;
+          approved?: boolean | null;
+          created_at?: string;
+          email?: string | null;
+          id?: number;
+          location?: string | null;
+          name?: string | null;
+          phone_number?: string | null;
+          profession?: string | null;
+          profile_id?: string | null;
+          work_outside?: boolean | null;
+        };
+        Update: {
+          about?: string | null;
+          approved?: boolean | null;
+          created_at?: string;
+          email?: string | null;
+          id?: number;
+          location?: string | null;
+          name?: string | null;
+          phone_number?: string | null;
+          profession?: string | null;
+          profile_id?: string | null;
+          work_outside?: boolean | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_for_hire_edits_profile_id_fkey";
+            columns: ["profile_id"];
+            isOneToOne: false;
+            referencedRelation: "profile";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      gallery: {
+        Row: {
+          album: string | null;
+          created_at: string;
+          custom_file_name: string | null;
+          file_name: string | null;
+          id: number;
+          image_url: string | null;
+        };
+        Insert: {
+          album?: string | null;
+          created_at?: string;
+          custom_file_name?: string | null;
+          file_name?: string | null;
+          id?: number;
+          image_url?: string | null;
+        };
+        Update: {
+          album?: string | null;
+          created_at?: string;
+          custom_file_name?: string | null;
+          file_name?: string | null;
+          id?: number;
+          image_url?: string | null;
+        };
+        Relationships: [];
+      };
+      gallery_state: {
+        Row: {
+          id: number;
+          updated_at: string;
+          version: number;
         };
         Insert: {
           id?: number;
-          title: string;
-          description?: string;
-          date: string;
-          time?: string;
-          image_url?: string;
+          updated_at?: string;
+          version?: number;
         };
         Update: {
           id?: number;
-          title?: string;
-          description?: string;
-          date?: string;
-          time?: string;
-          image_url?: string;
+          updated_at?: string;
+          version?: number;
+        };
+        Relationships: [];
+      };
+      job_board: {
+        Row: {
+          approved: boolean | null;
+          company_name: string;
+          created_at: string;
+          email: string;
+          id: number;
+          job_description: string | null;
+          job_title: string;
+          location: string | null;
+          pay: string | null;
+          phone_number: string;
+          profile_id: string | null;
+        };
+        Insert: {
+          approved?: boolean | null;
+          company_name: string;
+          created_at?: string;
+          email: string;
+          id?: number;
+          job_description?: string | null;
+          job_title: string;
+          location?: string | null;
+          pay?: string | null;
+          phone_number: string;
+          profile_id?: string | null;
+        };
+        Update: {
+          approved?: boolean | null;
+          company_name?: string;
+          created_at?: string;
+          email?: string;
+          id?: number;
+          job_description?: string | null;
+          job_title?: string;
+          location?: string | null;
+          pay?: string | null;
+          phone_number?: string;
+          profile_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_job_board_profile_id_fkey";
+            columns: ["profile_id"];
+            isOneToOne: false;
+            referencedRelation: "profile";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      job_board_edits: {
+        Row: {
+          approved: boolean | null;
+          company_name: string;
+          created_at: string;
+          email: string;
+          id: number;
+          job_description: string | null;
+          job_title: string;
+          location: string | null;
+          pay: string | null;
+          phone_number: string;
+          profile_id: string | null;
+        };
+        Insert: {
+          approved?: boolean | null;
+          company_name: string;
+          created_at?: string;
+          email: string;
+          id?: number;
+          job_description?: string | null;
+          job_title: string;
+          location?: string | null;
+          pay?: string | null;
+          phone_number: string;
+          profile_id?: string | null;
+        };
+        Update: {
+          approved?: boolean | null;
+          company_name?: string;
+          created_at?: string;
+          email?: string;
+          id?: number;
+          job_description?: string | null;
+          job_title?: string;
+          location?: string | null;
+          pay?: string | null;
+          phone_number?: string;
+          profile_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_job_board_edits_profile_id_fkey";
+            columns: ["profile_id"];
+            isOneToOne: false;
+            referencedRelation: "profile";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      profile: {
+        Row: {
+          created_at: string;
+          delete_acc_request: boolean | null;
+          email: string;
+          id: string;
+          name: string;
+          phone_number: string;
+        };
+        Insert: {
+          created_at?: string;
+          delete_acc_request?: boolean | null;
+          email: string;
+          id: string;
+          name?: string;
+          phone_number?: string;
+        };
+        Update: {
+          created_at?: string;
+          delete_acc_request?: boolean | null;
+          email?: string;
+          id?: string;
+          name?: string;
+          phone_number?: string;
         };
         Relationships: [];
       };
       sponsors: {
         Row: {
-          id: number;
-          sponsor: string;
-          description: string;
-          location: string | null;
-          phone: string;
-          website: string | null;
-          image_url: string | null;
-          file_name: string | null;
+          created_at: string;
           custom_file_name: string | null;
-          logo_url: string | null;
-          logo_file_name: string | null;
           custom_logo_file_name: string | null;
-        };
-        Insert: {
-          id?: number;
-          sponsor: string;
-          description?: string;
-          location?: string | null;
-          phone?: string;
-          website?: string | null;
-          image_url?: string | null;
-          file_name?: string | null;
-          custom_file_name?: string | null;
-          logo_url?: string | null;
-          logo_file_name?: string | null;
-          custom_logo_file_name?: string | null;
-        };
-        Update: {
-          id?: number;
-          sponsor?: string;
-          description?: string;
-          location?: string | null;
-          phone?: string;
-          website?: string | null;
-          image_url?: string | null;
-          file_name?: string | null;
-          custom_file_name?: string | null;
-          logo_url?: string | null;
-          logo_file_name?: string | null;
-          custom_logo_file_name?: string | null;
-        };
-        Relationships: [];
-      };
-      gallery: {
-        Row: {
+          description: string | null;
+          file_name: string | null;
           id: number;
-          image_url: string;
-          file_name: string;
-          custom_file_name: string;
-          event: string;
+          image_url: string | null;
+          location: string | null;
+          logo_file_name: string | null;
+          logo_url: string | null;
+          phone: string | null;
+          sponsor: string | null;
+          website: string | null;
         };
         Insert: {
+          created_at?: string;
+          custom_file_name?: string | null;
+          custom_logo_file_name?: string | null;
+          description?: string | null;
+          file_name?: string | null;
           id?: number;
-          image_url: string;
-          file_name?: string;
-          custom_file_name?: string;
-          event?: string;
+          image_url?: string | null;
+          location?: string | null;
+          logo_file_name?: string | null;
+          logo_url?: string | null;
+          phone?: string | null;
+          sponsor?: string | null;
+          website?: string | null;
         };
         Update: {
+          created_at?: string;
+          custom_file_name?: string | null;
+          custom_logo_file_name?: string | null;
+          description?: string | null;
+          file_name?: string | null;
           id?: number;
-          image_url?: string;
-          file_name?: string;
-          custom_file_name?: string;
-          event?: string;
+          image_url?: string | null;
+          location?: string | null;
+          logo_file_name?: string | null;
+          logo_url?: string | null;
+          phone?: string | null;
+          sponsor?: string | null;
+          website?: string | null;
         };
         Relationships: [];
       };
     };
-    Views: Record<string, never>;
-    Functions: Record<string, never>;
-    Enums: Record<string, never>;
-    CompositeTypes: Record<string, never>;
+    Views: {
+      [_ in never]: never;
+    };
+    Functions: {
+      [_ in never]: never;
+    };
+    Enums: {
+      [_ in never]: never;
+    };
+    CompositeTypes: {
+      [_ in never]: never;
+    };
   };
 };
 
-type PublicSchema = Database[Extract<keyof Database, "public">];
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">;
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<
+  keyof Database,
+  "public"
+>];
 
 export type Tables<
-  PublicTableNameOrOptions extends
-    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
-    | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R;
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
-        PublicSchema["Views"])
-    ? (PublicSchema["Tables"] &
-        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
         Row: infer R;
       }
       ? R
@@ -175,20 +532,24 @@ export type Tables<
     : never;
 
 export type TablesInsert<
-  PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I;
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
         Insert: infer I;
       }
       ? I
@@ -196,20 +557,24 @@ export type TablesInsert<
     : never;
 
 export type TablesUpdate<
-  PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U;
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
         Update: infer U;
       }
       ? U
@@ -217,14 +582,41 @@ export type TablesUpdate<
     : never;
 
 export type Enums<
-  PublicEnumNameOrOptions extends
-    | keyof PublicSchema["Enums"]
-    | { schema: keyof Database },
-  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
-    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
     : never;
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never;
+
+export const Constants = {
+  public: {
+    Enums: {},
+  },
+} as const;

@@ -4,39 +4,39 @@ import { useState } from "react";
 import { useGallery } from "@/hooks/use-gallery";
 
 export function GalleryDisplay() {
-  const [selectedEvent, setSelectedEvent] = useState<string | undefined>(
+  const [selectedAlbum, setSelectedAlbum] = useState<string | undefined>(
     undefined
   );
-  const { images, events, loading, hasMore, loadMore } =
-    useGallery(selectedEvent);
+  const { images, albums, loading, hasMore, loadMore } =
+    useGallery(selectedAlbum);
   const [lightbox, setLightbox] = useState<string | null>(null);
 
   return (
     <div className="flex flex-col gap-6 px-4 py-10 md:px-10">
-      {/* Event filters */}
-      {events.length > 0 && (
+      {/* Album filters */}
+      {albums.length > 0 && (
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={() => setSelectedEvent(undefined)}
+            onClick={() => setSelectedAlbum(undefined)}
             className={`rounded-full border px-3 py-1 text-sm transition-colors ${
-              !selectedEvent
+              !selectedAlbum
                 ? "border-[var(--color-prussian-blue)] bg-[var(--color-prussian-blue)] text-white"
                 : "border-gray-300 text-gray-600 hover:border-[var(--color-prussian-blue)]"
             }`}
           >
             All
           </button>
-          {events.map((ev) => (
+          {albums.map((album) => (
             <button
-              key={ev}
-              onClick={() => setSelectedEvent(ev)}
+              key={album}
+              onClick={() => setSelectedAlbum(album)}
               className={`rounded-full border px-3 py-1 text-sm transition-colors ${
-                selectedEvent === ev
+                selectedAlbum === album
                   ? "border-[var(--color-prussian-blue)] bg-[var(--color-prussian-blue)] text-white"
                   : "border-gray-300 text-gray-600 hover:border-[var(--color-prussian-blue)]"
               }`}
             >
-              {ev}
+              {album}
             </button>
           ))}
         </div>
@@ -52,16 +52,21 @@ export function GalleryDisplay() {
           {images.map((img) => (
             <button
               key={img.id}
-              className="aspect-square overflow-hidden rounded-lg focus:ring-2 focus:ring-[var(--color-rojo-red)] focus:outline-none"
+              className="group relative aspect-square overflow-hidden rounded-lg focus:ring-2 focus:ring-[var(--color-rojo-red)] focus:outline-none"
               onClick={() => setLightbox(img.image_url)}
-              aria-label={`View image from ${img.event || "gallery"}`}
+              aria-label={`View image from ${img.album || "gallery"}`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={img.image_url}
-                alt={img.event || "Gallery image"}
-                className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                src={img.image_url ?? ""}
+                alt={img.album || "Gallery image"}
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
+              {img.album && (
+                <span className="absolute bottom-1 left-1 rounded bg-black/60 px-1.5 py-0.5 text-[10px] font-medium text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                  {img.album}
+                </span>
+              )}
             </button>
           ))}
         </div>

@@ -42,6 +42,8 @@ export default async function AccountPage() {
             email: user.email ?? "",
             name: "",
             phone_number: "",
+            created_at: new Date().toISOString(),
+            delete_acc_request: false,
           }
         }
       />
