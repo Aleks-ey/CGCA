@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useSupabase } from "@/hooks/use-supabase";
 import { GalleryUpload } from "@/components/gallery/gallery-upload";
 import { EventForm } from "@/components/admin/event-form";
@@ -81,6 +82,13 @@ export function AdminClient({ events, sponsors }: AdminClientProps) {
             }}
             onCancel={editingEvent ? () => setEditingEvent(null) : undefined}
           />
+
+          <Link
+            href="/admin/volunteers"
+            className="w-fit text-sm text-[var(--color-prussian-blue)] underline"
+          >
+            Manage Volunteers
+          </Link>
 
           <div className="flex flex-col gap-3">
             <h3 className="font-semibold">All Events ({events.length})</h3>

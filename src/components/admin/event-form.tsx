@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react";
 import { useSupabase } from "@/hooks/use-supabase";
 import { EventCard } from "@/components/events/event-card";
+import { VolunteerRolesManager } from "@/components/admin/volunteer-roles-manager";
 import type { Database } from "@/types/supabase";
 
 type EventRow = Database["public"]["Tables"]["events"]["Row"];
@@ -23,6 +24,8 @@ interface DraftState {
   location: string;
   ctaUrl: string;
   imageUrlInput: string;
+  volunteerEnabled: boolean;
+  volunteerInfo: string;
 }
 
 const EMPTY_DRAFT: DraftState = {
@@ -34,6 +37,8 @@ const EMPTY_DRAFT: DraftState = {
   location: "",
   ctaUrl: "",
   imageUrlInput: "",
+  volunteerEnabled: false,
+  volunteerInfo: "",
 };
 
 function toDraft(ev?: EventRow): DraftState {
@@ -47,6 +52,8 @@ function toDraft(ev?: EventRow): DraftState {
     location: ev.location ?? "",
     ctaUrl: ev.cta_url ?? "",
     imageUrlInput: ev.image_url ?? "",
+    volunteerEnabled: ev.volunteer_enabled ?? false,
+    volunteerInfo: ev.volunteer_info ?? "",
   };
 }
 
@@ -102,6 +109,7 @@ export function EventForm({
   }
 
   const previewEvent = {
+    id: initialEvent?.id ?? null,
     title: draft.title,
     description: draft.description,
     date: draft.date,
@@ -110,6 +118,7 @@ export function EventForm({
     location: draft.location,
     cta_url: draft.ctaUrl || null,
     image_url: previewUrl,
+    volunteer_enabled: draft.volunteerEnabled,
   };
 
   async function handleSubmit(e: React.FormEvent) {
@@ -154,6 +163,8 @@ export function EventForm({
         location: draft.location,
         cta_url: draft.ctaUrl || null,
         image_url: imageUrl,
+        volunteer_enabled: draft.volunteerEnabled,
+        volunteer_info: draft.volunteerInfo,
       };
 
       const { error: dbError } =
@@ -312,6 +323,33 @@ export function EventForm({
             here — e.g. tickets, RSVP, or more info.
           </p>
         </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+            <input
+              type="checkbox"
+              checked={draft.volunteerEnabled}
+              onChange={(e) =>
+                updateField("volunteerEnabled", e.target.checked)
+              }
+            />
+            Enable volunteer signups for this event
+          </label>
+          {draft.volunteerEnabled && (
+            <textarea
+              id="event-volunteer-info"
+              placeholder="What does volunteering for this event involve?"
+              value={draft.volunteerInfo}
+              onChange={(e) => updateField("volunteerInfo", e.target.value)}
+              rows={3}
+              className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            />
+          )}
+        </div>
+
+        {mode === "edit" && initialEvent && (
+          <VolunteerRolesManager eventId={initialEvent.id} />
+        )}
 
         <div className="flex flex-col gap-1">
           <div className="flex items-center justify-between">

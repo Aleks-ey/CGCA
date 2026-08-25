@@ -132,6 +132,8 @@ export type Database = {
           location: string | null;
           start_time: string | null;
           title: string | null;
+          volunteer_enabled: boolean;
+          volunteer_info: string;
         };
         Insert: {
           created_at?: string;
@@ -144,6 +146,8 @@ export type Database = {
           location?: string | null;
           start_time?: string | null;
           title?: string | null;
+          volunteer_enabled?: boolean;
+          volunteer_info?: string;
         };
         Update: {
           created_at?: string;
@@ -156,6 +160,8 @@ export type Database = {
           location?: string | null;
           start_time?: string | null;
           title?: string | null;
+          volunteer_enabled?: boolean;
+          volunteer_info?: string;
         };
         Relationships: [];
       };
@@ -478,6 +484,128 @@ export type Database = {
           website?: string | null;
         };
         Relationships: [];
+      };
+      volunteer_org_roles: {
+        Row: {
+          created_at: string;
+          event_id: number;
+          id: number;
+          label: string;
+          sort_order: number;
+        };
+        Insert: {
+          created_at?: string;
+          event_id: number;
+          id?: never;
+          label: string;
+          sort_order?: number;
+        };
+        Update: {
+          created_at?: string;
+          event_id?: number;
+          id?: never;
+          label?: string;
+          sort_order?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "volunteer_org_roles_event_id_fkey";
+            columns: ["event_id"];
+            isOneToOne: false;
+            referencedRelation: "events";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      volunteer_roles: {
+        Row: {
+          created_at: string;
+          event_id: number;
+          id: number;
+          label: string;
+          sort_order: number;
+        };
+        Insert: {
+          created_at?: string;
+          event_id: number;
+          id?: never;
+          label: string;
+          sort_order?: number;
+        };
+        Update: {
+          created_at?: string;
+          event_id?: number;
+          id?: never;
+          label?: string;
+          sort_order?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "volunteer_roles_event_id_fkey";
+            columns: ["event_id"];
+            isOneToOne: false;
+            referencedRelation: "events";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      volunteer_signups: {
+        Row: {
+          assigned_org_role_id: number | null;
+          created_at: string;
+          email: string;
+          event_id: number;
+          id: number;
+          name: string;
+          notes: string;
+          phone: string;
+          preferred_role_id: number | null;
+        };
+        Insert: {
+          assigned_org_role_id?: number | null;
+          created_at?: string;
+          email: string;
+          event_id: number;
+          id?: never;
+          name: string;
+          notes?: string;
+          phone?: string;
+          preferred_role_id?: number | null;
+        };
+        Update: {
+          assigned_org_role_id?: number | null;
+          created_at?: string;
+          email?: string;
+          event_id?: number;
+          id?: never;
+          name?: string;
+          notes?: string;
+          phone?: string;
+          preferred_role_id?: number | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "volunteer_signups_assigned_org_role_id_fkey";
+            columns: ["assigned_org_role_id"];
+            isOneToOne: false;
+            referencedRelation: "volunteer_org_roles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "volunteer_signups_event_id_fkey";
+            columns: ["event_id"];
+            isOneToOne: false;
+            referencedRelation: "events";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "volunteer_signups_preferred_role_id_fkey";
+            columns: ["preferred_role_id"];
+            isOneToOne: false;
+            referencedRelation: "volunteer_roles";
+            referencedColumns: ["id"];
+          },
+        ];
       };
     };
     Views: {

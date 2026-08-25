@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { parseLocalDate } from "@/lib/date";
 
 export interface EventCardData {
+  id?: number | null;
   title: string | null;
   description: string | null;
   date: string | null;
@@ -13,6 +15,7 @@ export interface EventCardData {
   location: string | null;
   image_url: string | null;
   cta_url: string | null;
+  volunteer_enabled?: boolean | null;
 }
 
 interface EventCardProps {
@@ -52,6 +55,27 @@ function CtaButton({ url }: { url: string | null }) {
       >
         Learn More
       </a>
+    </div>
+  );
+}
+
+function VolunteerButton({
+  id,
+  enabled,
+}: {
+  id: number | null | undefined;
+  enabled: boolean | null | undefined;
+}) {
+  if (!enabled || !id) return null;
+  return (
+    <div className="mt-2">
+      <Link
+        href={`/events/${id}/volunteer`}
+        onClick={(e) => e.stopPropagation()}
+        className="inline-block rounded bg-[var(--color-prussian-blue)] px-3 py-1 text-sm font-bold text-white"
+      >
+        Volunteer
+      </Link>
     </div>
   );
 }
@@ -119,7 +143,10 @@ export function EventCard({ event, variant, className }: EventCardProps) {
           <p className="text-xs text-gray-400 md:hidden">
             {expanded ? "Tap to collapse ▲" : "Tap to read more ▼"}
           </p>
-          <CtaButton url={event.cta_url} />
+          <div className="flex flex-wrap gap-2">
+            <CtaButton url={event.cta_url} />
+            <VolunteerButton id={event.id} enabled={event.volunteer_enabled} />
+          </div>
         </div>
         {event.image_url && (
           <div className="content-center md:w-1/2 md:p-2">
@@ -163,7 +190,10 @@ export function EventCard({ event, variant, className }: EventCardProps) {
         <p className="text-xs text-gray-400 md:hidden">
           {expanded ? "Tap to collapse ▲" : "Tap to read more ▼"}
         </p>
-        <CtaButton url={event.cta_url} />
+        <div className="flex flex-wrap gap-2">
+          <CtaButton url={event.cta_url} />
+          <VolunteerButton id={event.id} enabled={event.volunteer_enabled} />
+        </div>
       </div>
     </div>
   );
