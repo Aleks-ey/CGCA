@@ -2,6 +2,9 @@ import type { Metadata, Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HomeWordCycle } from "./home-word-cycle";
+import { createClient } from "@/lib/supabase/server";
+import { EventSlider } from "@/components/events/event-slider";
+import { getUpcomingEvents } from "@/lib/events";
 
 export const metadata: Metadata = {
   title: "CGCA — Colorado Georgian Community Association",
@@ -52,7 +55,15 @@ const aboutSections = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const supabase = await createClient();
+  const { data: events } = await supabase
+    .from("events")
+    .select("*")
+    .order("date");
+
+  const upcoming = getUpcomingEvents(events ?? [], { withinMonths: 2 });
+
   return (
     <>
       {/* ---- Hero ---- */}
@@ -81,15 +92,15 @@ export default function HomePage() {
       </div>
 
       {/* ---- CGCA full name ---- */}
-      <div className="mt-28 flex flex-col justify-center bg-[var(--color-wine-plum)] py-12 text-center text-white shadow-[5px_5px_10px_black]">
+      <div className="mt-28 flex flex-col justify-center bg-[var(--color-wine-plum)] py-16 text-center text-white">
         <h2 className="[font-family:var(--font-merriweather)] text-[35px] leading-none">
           Colorado Georgian Community Association
         </h2>
       </div>
 
       {/* ---- Mission cards ---- */}
-      <div className="flex justify-center py-12 md:py-16 lg:py-20">
-        <div className="mt-10 flex flex-col justify-center px-10 text-center md:flex-row md:gap-16">
+      <div className="flex justify-center py-12 md:py-16 lg:py-24">
+        <div className="flex flex-col justify-center px-10 text-center md:flex-row md:gap-16">
           {[
             {
               src: "/images/CGCA-LOGO(zoomedout).png",
@@ -163,6 +174,18 @@ export default function HomePage() {
             </div>
           </div>
         ))}
+      </div>
+      {/* ---- Upcoming Events ---- */}
+      <div className="mt-40">
+        <div className="py-10">
+          <h2 className="text-space-x-2 text-center [font-family:var(--font-oxygen)] text-[35px] font-bold text-[var(--color-prussian-blue)]">
+            Don&apos;t Miss Out! Join Us In Celebrating Georgian Culture.
+          </h2>
+          <p className="mt-2 text-center text-gray-600">
+            Stay updated with our latest activities.
+          </p>
+        </div>
+        <EventSlider events={upcoming} />
       </div>
 
       {/* ---- Support CTA ---- */}

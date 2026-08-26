@@ -7,6 +7,7 @@ import { EventCard } from "@/components/events/event-card";
 type CalendarEvent = Database["public"]["Tables"]["events"]["Row"];
 
 interface EventSliderProps {
+  /** Already filtered to the events this slider should show, sorted soonest first. */
   events: CalendarEvent[];
 }
 
@@ -28,17 +29,8 @@ export function EventSlider({ events }: EventSliderProps) {
     touchStartX.current = null;
   };
 
-  const upcoming = events.filter((ev) => {
-    if (!ev.date) return false;
-    const evDate = new Date(ev.date);
-    const now = new Date();
-    const twoMonths = new Date();
-    twoMonths.setMonth(now.getMonth() + 2);
-    return evDate >= now && evDate <= twoMonths;
-  });
-
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col bg-[var(--color-wine-plum)] md:flex-row">
       {/* Left panel */}
       <div className="mx-auto flex flex-col bg-[var(--color-prussian-blue)] pb-6 md:w-1/4">
         <div className="mt-4 ml-4 text-white md:mt-28">
@@ -58,7 +50,7 @@ export function EventSlider({ events }: EventSliderProps) {
           </button>
           <button
             onClick={next}
-            disabled={index >= upcoming.length - 1}
+            disabled={index >= events.length - 1}
             aria-label="Next event"
             className="p-1 disabled:opacity-40"
           >
@@ -73,7 +65,7 @@ export function EventSlider({ events }: EventSliderProps) {
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        {upcoming.length === 0 ? (
+        {events.length === 0 ? (
           <div className="inline-block rounded-lg bg-white p-4">
             <h2 className="text-lg font-medium text-gray-900">
               No upcoming events
@@ -81,13 +73,13 @@ export function EventSlider({ events }: EventSliderProps) {
             <p className="text-gray-700">Check back later for more events!</p>
           </div>
         ) : (
-          upcoming.map((ev, i) => (
+          events.map((ev, i) => (
             <div
               key={ev.id}
               className="inline-block h-full w-full overflow-hidden rounded-lg align-top whitespace-normal shadow-[var(--color-prussian-blue)] shadow-md transition-transform duration-500 md:w-1/2"
               style={{ transform: `translateX(${(i - index) * 100}%)` }}
             >
-              <EventCard event={ev} variant="vertical" />
+              <EventCard event={ev} variant="vertical" size="sm" />
             </div>
           ))
         )}

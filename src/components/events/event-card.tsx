@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { parseLocalDate } from "@/lib/date";
+import { formatDisplayDate, formatDisplayTime } from "@/lib/date";
 
 export interface EventCardData {
   id?: number | null;
@@ -22,6 +22,8 @@ interface EventCardProps {
   event: EventCardData;
   /** "vertical" matches the events slider card, "horizontal" matches the calendar card. */
   variant: "vertical" | "horizontal";
+  /** "vertical" variant only. "sm" fits narrower containers (e.g. the home page teaser carousel); "lg" (default) is the larger events-page card. */
+  size?: "sm" | "lg";
   className?: string;
 }
 
@@ -30,15 +32,11 @@ function formatDateTimeLine(
   startTime: string | null,
   endTime: string | null
 ) {
-  // Keep the existing "raw date string" display for saved events (unchanged
-  // from the previous slider/calendar markup); only fall back to a
-  // placeholder when there's no parseable date yet, e.g. an in-progress
-  // admin draft.
-  const dateLabel = parseLocalDate(date) ? date : "Select a date";
-  if (!startTime) return dateLabel;
-  const timeLabel = endTime
-    ? `${startTime} – ${endTime}`
-    : `Starts at ${startTime}`;
+  const dateLabel = formatDisplayDate(date) ?? "Select a date";
+  const start = formatDisplayTime(startTime);
+  if (!start) return dateLabel;
+  const end = formatDisplayTime(endTime);
+  const timeLabel = end ? `${start} – ${end}` : `Starts at ${start}`;
   return `${dateLabel} — ${timeLabel}`;
 }
 
@@ -108,7 +106,12 @@ function LocationLine({ location }: { location: string | null }) {
   );
 }
 
-export function EventCard({ event, variant, className }: EventCardProps) {
+export function EventCard({
+  event,
+  variant,
+  size = "lg",
+  className,
+}: EventCardProps) {
   const [expanded, setExpanded] = useState(false);
   const title = event.title || "Untitled Event";
   const dateTimeLine = formatDateTimeLine(
@@ -166,7 +169,7 @@ export function EventCard({ event, variant, className }: EventCardProps) {
     <div
       onClick={() => setExpanded((v) => !v)}
       className={cn(
-        "flex h-full w-full cursor-pointer flex-col rounded-lg bg-white md:cursor-default",
+        "flex w-full cursor-pointer flex-col rounded-lg bg-white md:cursor-default",
         className
       )}
     >
@@ -175,13 +178,28 @@ export function EventCard({ event, variant, className }: EventCardProps) {
         <img
           src={event.image_url}
           alt={title}
-          className="h-auto w-auto rounded-t-lg object-fill md:h-2/5"
+          className={
+            size === "sm"
+              ? "h-40 w-full rounded-t-lg object-cover sm:h-44"
+              : "h-48 w-full rounded-t-lg object-cover sm:h-56 md:h-64"
+          }
         />
       )}
-      <div className="flex flex-col gap-1 px-4 py-2 md:h-3/5">
+      <div
+        className={cn(
+          "flex flex-col gap-1 px-4 py-2",
+          size === "lg" && "md:h-[32rem]"
+        )}
+      >
         <h2 className="text-lg font-medium text-gray-900">{title}</h2>
         <LocationLine location={event.location} />
-        <div className="overflow-y-auto py-2">
+        <div
+          className={
+            size === "sm"
+              ? "max-h-32 overflow-y-auto py-2"
+              : "overflow-y-auto py-2 md:min-h-0 md:flex-1"
+          }
+        >
           <p className={cn("text-gray-800", descriptionClassName)}>
             {event.description}
           </p>
