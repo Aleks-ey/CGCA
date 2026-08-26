@@ -16,7 +16,11 @@ export function getUpcomingEvents(
 ): EventRow[] {
   const today = startOfToday();
   const cutoff = options?.withinMonths
-    ? new Date(today.getFullYear(), today.getMonth() + options.withinMonths, today.getDate())
+    ? new Date(
+        today.getFullYear(),
+        today.getMonth() + options.withinMonths,
+        today.getDate()
+      )
     : null;
 
   return events
