@@ -62,13 +62,13 @@ export function Footer() {
             Contact
           </Link>
           <Link
-            href={"/contact" as Route<string>}
+            href={"/events" as Route<string>}
             className="text-sm text-slate-300 transition-colors hover:text-white"
           >
             Volunteer
           </Link>
           <Link
-            href={"/contact" as Route<string>}
+            href={"/donate" as Route<string>}
             className="text-sm text-slate-300 transition-colors hover:text-white"
           >
             Donate
