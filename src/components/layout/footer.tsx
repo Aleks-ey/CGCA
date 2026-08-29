@@ -67,12 +67,14 @@ export function Footer() {
           >
             Volunteer
           </Link>
-          <Link
-            href={"/donate" as Route<string>}
+          <a
+            href="https://square.link/u/20SYlc1k"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm text-slate-300 transition-colors hover:text-white"
           >
             Donate
-          </Link>
+          </a>
         </div>
 
         {/* Socials */}
