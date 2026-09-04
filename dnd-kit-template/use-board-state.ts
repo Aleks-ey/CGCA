@@ -37,7 +37,9 @@ export function useBoardState<T extends { id: number }>({
     if (persistError) {
       setError(persistError);
       setItems((prev) =>
-        prev.map((i) => (i.id === itemId ? setColumnId(i, previousColumnId) : i))
+        prev.map((i) =>
+          i.id === itemId ? setColumnId(i, previousColumnId) : i
+        )
       );
     }
   }

@@ -15,7 +15,9 @@ export default async function AccountLoginPage() {
   } = await supabase.auth.getUser();
 
   if (user) {
-    redirect((user.email === "admin@admin.com" ? "/admin" : "/account") as Route);
+    redirect(
+      (user.email === "admin@admin.com" ? "/admin" : "/account") as Route
+    );
   }
 
   return (
