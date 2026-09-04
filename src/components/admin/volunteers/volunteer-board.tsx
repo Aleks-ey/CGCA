@@ -1,116 +1,117 @@
 "use client";
 
-import { useState } from "react";
-import { DndContext, type DragEndEvent } from "@dnd-kit/core";
-import { useSupabase } from "@/hooks/use-supabase";
-import { OrgRoleColumn } from "@/components/admin/volunteers/org-role-column";
-import { AddOrgRoleForm } from "@/components/admin/volunteers/add-org-role-form";
+import { useMemo, useState } from "react";
+import { useVolunteerBoardData } from "@/hooks/use-volunteer-board-data";
+import { useToast, ToastStack } from "@/components/ui/toast";
+import { DesktopBoard } from "@/components/admin/volunteers/desktop-board";
+import { MobileBoardStack } from "@/components/admin/volunteers/mobile-board-stack";
+import { TagSortRow } from "@/components/admin/volunteers/tag-sort-row";
+import { SelectModeFab } from "@/components/admin/volunteers/select-mode-fab";
+import { TagModal } from "@/components/admin/volunteers/tag-modal";
 import type { Database } from "@/types/supabase";
 
 type VolunteerSignup = Database["public"]["Tables"]["volunteer_signups"]["Row"];
 type VolunteerOrgRole =
   Database["public"]["Tables"]["volunteer_org_roles"]["Row"];
 type VolunteerRole = Database["public"]["Tables"]["volunteer_roles"]["Row"];
+type VolunteerTag = Database["public"]["Tables"]["volunteer_tags"]["Row"];
+type VolunteerSignupTag =
+  Database["public"]["Tables"]["volunteer_signup_tags"]["Row"];
 
 interface VolunteerBoardProps {
   eventId: number;
   initialSignups: VolunteerSignup[];
   initialOrgRoles: VolunteerOrgRole[];
   preferredRoles: VolunteerRole[];
+  initialTags: VolunteerTag[];
+  initialSignupTags: VolunteerSignupTag[];
 }
-
-const UNASSIGNED_ID = "unassigned";
 
 export function VolunteerBoard({
   eventId,
   initialSignups,
   initialOrgRoles,
   preferredRoles,
+  initialTags,
+  initialSignupTags,
 }: VolunteerBoardProps) {
-  const supabase = useSupabase();
-  const [signups, setSignups] = useState(initialSignups);
-  const [orgRoles, setOrgRoles] = useState(initialOrgRoles);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    signups,
+    orgRoles,
+    tags,
+    signupTags,
+    error,
+    moveSignup,
+    addOrgRole,
+    deleteOrgRole,
+    addTag,
+    deleteTags,
+    applyTags,
+  } = useVolunteerBoardData({
+    eventId,
+    initialSignups,
+    initialOrgRoles,
+    initialTags,
+    initialSignupTags,
+  });
 
-  const preferredRoleLabels = new Map(
-    preferredRoles.map((r) => [r.id, r.label])
+  const { toasts, showToast, dismiss } = useToast();
+
+  const [selectMode, setSelectMode] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+  const [tagFilterIds, setTagFilterIds] = useState<Set<number>>(new Set());
+  const [tagModalOpen, setTagModalOpen] = useState(false);
+
+  const preferredRoleLabels = useMemo(
+    () => new Map(preferredRoles.map((r) => [r.id, r.label])),
+    [preferredRoles]
   );
 
-  async function handleDragEnd(event: DragEndEvent) {
-    const signupId = Number(event.active.id);
-    const overId = event.over?.id;
-    if (!overId) return;
+  const tagLabelsBySignup = useMemo(() => {
+    const tagLabelById = new Map(tags.map((t) => [t.id, t.label]));
+    const map = new Map<number, string[]>();
+    for (const st of signupTags) {
+      const label = tagLabelById.get(st.tag_id);
+      if (!label) continue;
+      const list = map.get(st.volunteer_signup_id) ?? [];
+      list.push(label);
+      map.set(st.volunteer_signup_id, list);
+    }
+    return map;
+  }, [tags, signupTags]);
 
-    const newOrgRoleId = overId === UNASSIGNED_ID ? null : Number(overId);
-    const signup = signups.find((s) => s.id === signupId);
-    if (!signup || signup.assigned_org_role_id === newOrgRoleId) return;
-
-    const previous = signup.assigned_org_role_id;
-    setSignups((prev) =>
-      prev.map((s) =>
-        s.id === signupId ? { ...s, assigned_org_role_id: newOrgRoleId } : s
+  const filteredSignups = useMemo(() => {
+    if (tagFilterIds.size === 0) return signups;
+    return signups.filter((s) =>
+      signupTags.some(
+        (st) => st.volunteer_signup_id === s.id && tagFilterIds.has(st.tag_id)
       )
     );
+  }, [signups, signupTags, tagFilterIds]);
 
-    const { error: dbError } = await supabase
-      .from("volunteer_signups")
-      .update({ assigned_org_role_id: newOrgRoleId })
-      .eq("id", signupId);
-
-    if (dbError) {
-      setError(dbError.message);
-      setSignups((prev) =>
-        prev.map((s) =>
-          s.id === signupId ? { ...s, assigned_org_role_id: previous } : s
-        )
-      );
-    }
+  function toggleSelect(id: number) {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   }
 
-  async function addOrgRole(label: string) {
-    setError(null);
-    const { data, error: dbError } = await supabase
-      .from("volunteer_org_roles")
-      .insert({ event_id: eventId, label, sort_order: orgRoles.length })
-      .select()
-      .single();
-
-    if (dbError) {
-      setError(dbError.message);
-      return;
-    }
-
-    setOrgRoles((prev) => [...prev, data]);
+  function toggleTagFilter(id: number) {
+    setTagFilterIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   }
 
-  async function deleteOrgRole(roleId: number) {
-    setError(null);
-    const { error: dbError } = await supabase
-      .from("volunteer_org_roles")
-      .delete()
-      .eq("id", roleId);
-
-    if (dbError) {
-      setError(dbError.message);
-      return;
-    }
-
-    setOrgRoles((prev) => prev.filter((r) => r.id !== roleId));
-    setSignups((prev) =>
-      prev.map((s) =>
-        s.assigned_org_role_id === roleId
-          ? { ...s, assigned_org_role_id: null }
-          : s
-      )
-    );
-  }
-
-  if (signups.length === 0) {
-    return (
-      <p className="text-sm text-gray-500">
-        No volunteers have signed up for this event yet.
-      </p>
-    );
+  function toggleSelectMode() {
+    setSelectMode((prev) => {
+      if (prev) setSelectedIds(new Set());
+      return !prev;
+    });
   }
 
   return (
@@ -121,29 +122,69 @@ export function VolunteerBoard({
         </p>
       )}
 
-      <DndContext onDragEnd={handleDragEnd}>
-        <div className="flex gap-4 overflow-x-auto pb-2">
-          <OrgRoleColumn
-            droppableId={UNASSIGNED_ID}
-            label="Unassigned"
-            signups={signups.filter((s) => s.assigned_org_role_id === null)}
-            preferredRoleLabels={preferredRoleLabels}
-          />
-          {orgRoles.map((role) => (
-            <OrgRoleColumn
-              key={role.id}
-              droppableId={String(role.id)}
-              label={role.label}
-              signups={signups.filter(
-                (s) => s.assigned_org_role_id === role.id
-              )}
+      <TagSortRow
+        tags={tags}
+        selectedTagIds={tagFilterIds}
+        onToggle={toggleTagFilter}
+      />
+
+      {signups.length === 0 ? (
+        <p className="text-sm text-gray-500">
+          No volunteers have signed up for this event yet.
+        </p>
+      ) : (
+        <>
+          <div className="hidden md:block">
+            <DesktopBoard
+              signups={filteredSignups}
+              orgRoles={orgRoles}
               preferredRoleLabels={preferredRoleLabels}
-              onDelete={() => deleteOrgRole(role.id)}
+              tagLabelsBySignup={tagLabelsBySignup}
+              selectMode={selectMode}
+              selectedIds={selectedIds}
+              onToggleSelect={toggleSelect}
+              onMoveSignup={moveSignup}
+              onAddOrgRole={addOrgRole}
+              onDeleteOrgRole={deleteOrgRole}
             />
-          ))}
-          <AddOrgRoleForm onAdd={addOrgRole} />
-        </div>
-      </DndContext>
+          </div>
+          <div className="md:hidden">
+            <MobileBoardStack
+              signups={filteredSignups}
+              orgRoles={orgRoles}
+              preferredRoleLabels={preferredRoleLabels}
+              tagLabelsBySignup={tagLabelsBySignup}
+              selectMode={selectMode}
+              selectedIds={selectedIds}
+              onToggleSelect={toggleSelect}
+              onMoveSignup={moveSignup}
+            />
+          </div>
+        </>
+      )}
+
+      <SelectModeFab
+        selectMode={selectMode}
+        onToggleSelectMode={toggleSelectMode}
+        onOpenTagModal={() => setTagModalOpen(true)}
+        selectedCount={selectedIds.size}
+      />
+
+      <TagModal
+        open={tagModalOpen}
+        onClose={() => setTagModalOpen(false)}
+        signups={signups}
+        preferredRoles={preferredRoles}
+        tags={tags}
+        baseSelectedIds={selectedIds}
+        onApplySuccess={() => setSelectedIds(new Set())}
+        addTag={addTag}
+        deleteTags={deleteTags}
+        applyTags={applyTags}
+        showToast={showToast}
+      />
+
+      <ToastStack toasts={toasts} onDismiss={dismiss} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { AdminClient } from "./admin-client";
 
@@ -25,6 +26,15 @@ export default async function AdminPage() {
       </h1>
 
       <AdminClient events={events ?? []} sponsors={sponsors ?? []} />
+
+      <div className="mt-10 text-center">
+        <Link
+          href="/account"
+          className="text-xs text-gray-400 underline hover:text-gray-600"
+        >
+          Go to account page
+        </Link>
+      </div>
     </div>
   );
 }

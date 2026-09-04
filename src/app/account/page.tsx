@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { AccountClient } from "./account-client";
 import { signOut } from "@/app/account-login/actions";
@@ -47,6 +48,15 @@ export default async function AccountPage() {
           }
         }
       />
+
+      {user.email === "admin@admin.com" && (
+        <Link
+          href="/admin"
+          className="w-fit rounded-md bg-[var(--color-prussian-blue)] px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
+        >
+          Back to Admin Dashboard
+        </Link>
+      )}
     </div>
   );
 }

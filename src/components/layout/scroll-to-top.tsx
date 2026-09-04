@@ -1,8 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+
+// The volunteer board renders its own floating action button (select mode +
+// tag manager) in this same corner, so the global scroll-to-top button is
+// suppressed there to avoid overlapping controls.
+const VOLUNTEER_BOARD_PATTERN = /^\/admin\/volunteers\/[^/]+$/;
 
 export function ScrollToTop() {
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -11,6 +18,7 @@ export function ScrollToTop() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  if (VOLUNTEER_BOARD_PATTERN.test(pathname)) return null;
   if (!visible) return null;
 
   return (

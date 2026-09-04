@@ -30,24 +30,35 @@ export default async function AdminEventVolunteersPage({
 
   if (!event) notFound();
 
-  const [{ data: orgRoles }, { data: signups }, { data: preferredRoles }] =
-    await Promise.all([
-      supabase
-        .from("volunteer_org_roles")
-        .select("*")
-        .eq("event_id", event.id)
-        .order("sort_order"),
-      supabase
-        .from("volunteer_signups")
-        .select("*")
-        .eq("event_id", event.id)
-        .order("created_at"),
-      supabase
-        .from("volunteer_roles")
-        .select("*")
-        .eq("event_id", event.id)
-        .order("sort_order"),
-    ]);
+  const [
+    { data: orgRoles },
+    { data: signups },
+    { data: preferredRoles },
+    { data: tags },
+    { data: signupTags },
+  ] = await Promise.all([
+    supabase
+      .from("volunteer_org_roles")
+      .select("*")
+      .eq("event_id", event.id)
+      .order("sort_order"),
+    supabase
+      .from("volunteer_signups")
+      .select("*")
+      .eq("event_id", event.id)
+      .order("created_at"),
+    supabase
+      .from("volunteer_roles")
+      .select("*")
+      .eq("event_id", event.id)
+      .order("sort_order"),
+    supabase
+      .from("volunteer_tags")
+      .select("*")
+      .eq("event_id", event.id)
+      .order("created_at"),
+    supabase.from("volunteer_signup_tags").select("*").eq("event_id", event.id),
+  ]);
 
   return (
     <div className="px-6 py-12 md:px-16">
@@ -71,6 +82,8 @@ export default async function AdminEventVolunteersPage({
         initialSignups={signups ?? []}
         initialOrgRoles={orgRoles ?? []}
         preferredRoles={preferredRoles ?? []}
+        initialTags={tags ?? []}
+        initialSignupTags={signupTags ?? []}
       />
     </div>
   );

@@ -16,6 +16,10 @@ export async function signIn(formData: FormData) {
     return { error: error.message };
   }
 
+  if (email === "admin@admin.com") {
+    redirect("/admin" as Route);
+  }
+
   redirect("/account" as Route);
 }
 

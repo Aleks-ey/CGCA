@@ -7,8 +7,7 @@ type VolunteerSignup = Database["public"]["Tables"]["volunteer_signups"]["Row"];
 type VolunteerOrgRole =
   Database["public"]["Tables"]["volunteer_org_roles"]["Row"];
 
-interface OrgRoleColumnProps {
-  label: string;
+interface MobileBoardStackProps {
   signups: VolunteerSignup[];
   orgRoles: VolunteerOrgRole[];
   preferredRoleLabels: Map<number, string>;
@@ -17,11 +16,9 @@ interface OrgRoleColumnProps {
   selectedIds: Set<number>;
   onToggleSelect: (id: number) => void;
   onMoveSignup: (signupId: number, overId: string) => void;
-  onDelete?: () => void;
 }
 
-export function OrgRoleColumn({
-  label,
+export function MobileBoardStack({
   signups,
   orgRoles,
   preferredRoleLabels,
@@ -30,13 +27,12 @@ export function OrgRoleColumn({
   selectedIds,
   onToggleSelect,
   onMoveSignup,
-  onDelete,
-}: OrgRoleColumnProps) {
+}: MobileBoardStackProps) {
   return (
-    <div className="w-72 shrink-0">
+    <div className="flex w-full flex-col gap-4">
       <OrgRoleColumnBody
-        label={label}
-        signups={signups}
+        label="Unassigned"
+        signups={signups.filter((s) => s.assigned_org_role_id === null)}
         orgRoles={orgRoles}
         preferredRoleLabels={preferredRoleLabels}
         tagLabelsBySignup={tagLabelsBySignup}
@@ -44,9 +40,23 @@ export function OrgRoleColumn({
         selectedIds={selectedIds}
         onToggleSelect={onToggleSelect}
         onMoveSignup={onMoveSignup}
-        onDelete={onDelete}
-        className="h-full min-h-[10rem]"
+        className="w-full"
       />
+      {orgRoles.map((role) => (
+        <OrgRoleColumnBody
+          key={role.id}
+          label={role.label}
+          signups={signups.filter((s) => s.assigned_org_role_id === role.id)}
+          orgRoles={orgRoles}
+          preferredRoleLabels={preferredRoleLabels}
+          tagLabelsBySignup={tagLabelsBySignup}
+          selectMode={selectMode}
+          selectedIds={selectedIds}
+          onToggleSelect={onToggleSelect}
+          onMoveSignup={onMoveSignup}
+          className="w-full"
+        />
+      ))}
     </div>
   );
 }

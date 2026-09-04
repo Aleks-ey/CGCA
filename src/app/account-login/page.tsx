@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import type { Route } from "next";
+import { createClient } from "@/lib/supabase/server";
 import { LoginForm } from "@/components/auth/login-form";
 import { RegisterForm } from "@/components/auth/register-form";
 import { ResetPasswordForm } from "./reset-password-form";
 
 export const metadata: Metadata = { title: "Sign In" };
 
-export default function AccountLoginPage() {
+export default async function AccountLoginPage() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    redirect((user.email === "admin@admin.com" ? "/admin" : "/account") as Route);
+  }
+
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 py-12">
       <div className="flex w-full max-w-md flex-col gap-8">

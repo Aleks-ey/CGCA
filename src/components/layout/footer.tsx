@@ -114,8 +114,10 @@ export function Footer() {
       </div>
 
       <div className="border-t border-slate-700 py-4 text-center text-xs text-slate-400">
-        © {new Date().getFullYear()} Colorado Georgian Community Association.
-        All rights reserved.
+        © {new Date().getFullYear()} Colorado Georgian Community Association.{" "}
+        <Link href="/account-login" className="text-inherit no-underline">
+          All rights reserved
+        </Link>
       </div>
     </footer>
   );

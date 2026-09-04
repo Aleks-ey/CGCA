@@ -18,7 +18,7 @@ export function AddOrgRoleForm({ onAdd, disabled }: AddOrgRoleFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-64 shrink-0 gap-2">
+    <form onSubmit={handleSubmit} className="flex w-72 shrink-0 gap-2">
       <input
         type="text"
         value={label}
