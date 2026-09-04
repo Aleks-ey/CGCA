@@ -444,6 +444,7 @@ export type Database = {
           custom_logo_file_name: string | null;
           description: string | null;
           file_name: string | null;
+          hidden: boolean;
           id: number;
           image_url: string | null;
           location: string | null;
@@ -459,6 +460,7 @@ export type Database = {
           custom_logo_file_name?: string | null;
           description?: string | null;
           file_name?: string | null;
+          hidden?: boolean;
           id?: number;
           image_url?: string | null;
           location?: string | null;
@@ -474,6 +476,7 @@ export type Database = {
           custom_logo_file_name?: string | null;
           description?: string | null;
           file_name?: string | null;
+          hidden?: boolean;
           id?: number;
           image_url?: string | null;
           location?: string | null;
@@ -549,6 +552,52 @@ export type Database = {
           },
         ];
       };
+      volunteer_signup_tags: {
+        Row: {
+          created_at: string;
+          event_id: number;
+          id: number;
+          tag_id: number;
+          volunteer_signup_id: number;
+        };
+        Insert: {
+          created_at?: string;
+          event_id: number;
+          id?: never;
+          tag_id: number;
+          volunteer_signup_id: number;
+        };
+        Update: {
+          created_at?: string;
+          event_id?: number;
+          id?: never;
+          tag_id?: number;
+          volunteer_signup_id?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "volunteer_signup_tags_event_id_fkey";
+            columns: ["event_id"];
+            isOneToOne: false;
+            referencedRelation: "events";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "volunteer_signup_tags_tag_id_fkey";
+            columns: ["tag_id"];
+            isOneToOne: false;
+            referencedRelation: "volunteer_tags";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "volunteer_signup_tags_volunteer_signup_id_fkey";
+            columns: ["volunteer_signup_id"];
+            isOneToOne: false;
+            referencedRelation: "volunteer_signups";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       volunteer_signups: {
         Row: {
           assigned_org_role_id: number | null;
@@ -603,6 +652,35 @@ export type Database = {
             columns: ["preferred_role_id"];
             isOneToOne: false;
             referencedRelation: "volunteer_roles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      volunteer_tags: {
+        Row: {
+          created_at: string;
+          event_id: number;
+          id: number;
+          label: string;
+        };
+        Insert: {
+          created_at?: string;
+          event_id: number;
+          id?: never;
+          label: string;
+        };
+        Update: {
+          created_at?: string;
+          event_id?: number;
+          id?: never;
+          label?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "volunteer_tags_event_id_fkey";
+            columns: ["event_id"];
+            isOneToOne: false;
+            referencedRelation: "events";
             referencedColumns: ["id"];
           },
         ];
