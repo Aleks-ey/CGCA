@@ -230,7 +230,7 @@ export function EventForm({
             value={draft.description}
             onChange={(e) => updateField("description", e.target.value)}
             required
-            rows={3}
+            rows={8}
             className="rounded-md border border-gray-300 px-3 py-2 text-sm"
           />
         </div>
@@ -347,7 +347,7 @@ export function EventForm({
           )}
         </div>
 
-        {mode === "edit" && initialEvent && (
+        {mode === "edit" && initialEvent && draft.volunteerEnabled && (
           <VolunteerRolesManager eventId={initialEvent.id} />
         )}
 
